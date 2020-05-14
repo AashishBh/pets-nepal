@@ -11,8 +11,6 @@
 # config keys
 /src/firebase/firebase.config.js
 
-/src/blog
-
 # production
 /build
 
