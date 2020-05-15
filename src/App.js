@@ -57,7 +57,7 @@ class App extends Component {
           <Route exact path="/blog/:id" component={BlogDetail} />
           <Route
             exact
-            path="blog/new"
+            path="/add/blog"
             render={() => (
               <Suspense fallback=<div>Loading...</div>>
                 <AddBlog />

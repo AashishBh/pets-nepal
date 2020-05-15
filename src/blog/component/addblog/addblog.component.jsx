@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import uniqid from "uniqid";
 import axios from "axios";
-// import { Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 class AddBlog extends Component {
 	state = {
@@ -20,15 +20,13 @@ class AddBlog extends Component {
 		const data = {
 			title: this.state.title,
 			content: this.state.content,
-			author: this.state.id,
+			id: this.state.id,
 		};
 		axios
-			.post("https://jsonplaceholder.typicode.com/posts", data)
+			.post("https://minor-2b2f5.firebaseio.com/blogs.json", data)
 			.then((response) => {
-				console.log(response);
-				// this.props.history.push("/");
-				this.props.history.replace("/");
-				// this.setState({ submitted: true });
+				// console.log(response);
+				this.setState({ submitted: true });
 			});
 	};
 
@@ -38,12 +36,13 @@ class AddBlog extends Component {
 	};
 
 	render() {
-		// let redirect = null;
-		// if (this.state.submitted) {
-		// 	redirect = <Redirect to="/" />;
-		// }
+		let redirect = null;
+		if (this.state.submitted) {
+			redirect = <Redirect to="/" />;
+		}
 		return (
 			<Container>
+				{redirect}
 				<Jumbotron>
 					<h1>Add Blog</h1>
 				</Jumbotron>

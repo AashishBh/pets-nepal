@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from "react";
 import axios from "axios";
 import Blogs from "./blogs/blogs.component";
-import {withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 class AllBlogs extends Component {
 	state = {
@@ -9,14 +9,19 @@ class AllBlogs extends Component {
 	};
 
 	componentDidMount = () => {
-		axios.get("https://jsonplaceholder.typicode.com/posts").then((response) => {
-			this.setState({ posts: response.data });
-		});
+		axios
+			.get("https://minor-2b2f5.firebaseio.com/blogs.json")
+			.then((response) => {
+				const arr = Object.keys(response.data).map((key) => {
+					return response.data[key];
+				});
+				this.setState({ posts: arr });
+				console.log(this.state.posts);
+			});
 	};
 
 	blogSelectHandler = (id) => {
-		console.log(this.props);
-		this.props.history.push('/blog/' + id );
+		this.props.history.push("/blog/" + id);
 	};
 
 	render() {
@@ -26,9 +31,9 @@ class AllBlogs extends Component {
 					<Blogs
 						key={post.id}
 						title={post.title}
-						body={post.body}
+						body={post.content}
 						id={post.id}
-						clicked = {() => this.blogSelectHandler(post.id)}
+						clicked={() => this.blogSelectHandler(post.id)}
 					/>
 				))}
 			</Fragment>

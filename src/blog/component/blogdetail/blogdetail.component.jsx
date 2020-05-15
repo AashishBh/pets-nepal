@@ -5,15 +5,20 @@ import axios from "axios";
 
 class BlogDetail extends Component {
 	state = {
-		post: { body: null, title: null },
+		post: {},
 	};
 
 	componentDidMount = () => {
 		const { id } = this.props.match.params;
+		console.log("ID", id);
 		axios
-			.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
+			.get("https://minor-2b2f5.firebaseio.com/blogs.json")
 			.then((response) => {
-				this.setState({ post: response.data });
+				const arr = Object.keys(response.data).map((key) => {
+					return response.data[key];
+				});
+				const arrx = arr.filter((key) => key.id === id);
+				this.setState({ post: arrx[0] });
 			});
 	};
 
@@ -29,7 +34,7 @@ class BlogDetail extends Component {
 							By: AUTHOR
 							<br /> On: Today's date{" "}
 						</Card.Title>
-						<Card.Text>{this.state.post.body}</Card.Text>
+						<Card.Text>{this.state.post.content}</Card.Text>
 					</Card.Body>
 				</Card>
 			</Container>
