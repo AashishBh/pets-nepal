@@ -2,6 +2,7 @@ import React from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux';
 import { auth } from '../../firebase/firebase.utils';
 
 const Header = ({ currentUser }) => (
@@ -29,4 +30,8 @@ const Header = ({ currentUser }) => (
 	</Navbar>
 );
 
-export default Header;
+const mapStateToProps = (state) => ({
+	currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps, null)(Header);
