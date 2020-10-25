@@ -1,0 +1,38 @@
+import React from "react";
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { addToCart } from "../../redux/cart/cart-actions";
+// import ProductDetail from "./product-detail";
+import { ReactComponent as CartIcon } from "../../assets/cart-icon.svg";
+import "./products.css";
+
+const products = ({ item, addItem, history }) => {
+	const { name, imageUrl, price } = item;
+	return (
+		<div>
+			<div className="products">
+				<div
+					className="image"
+					style={{
+						backgroundImage: `url(${imageUrl})`,
+					}}
+				/>
+				<div className="product-detail" onClick={() => history.push("/product/"+item.id)}>
+					<span className="name">{name.toUpperCase()}</span>
+					<br />
+					<span className="price">Rs. {price}</span>
+					<CartIcon
+						className="cart-icon"
+						onClick={() => addItem(item)}
+					/>
+				</div>
+			</div>
+		</div>
+	);
+};
+
+const mapDispatchToProps = (dispatch) => ({
+	addItem: (item) => dispatch(addToCart(item)),
+});
+
+export default withRouter(connect(null, mapDispatchToProps)(products));
