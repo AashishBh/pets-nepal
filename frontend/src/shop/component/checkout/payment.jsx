@@ -18,7 +18,7 @@ const errorPayment = (data) => {
 	alert("Payment Error");
 };
 
-const onToken = (total, description) => (token, address) => {
+const onToken = (total, cartItems) => (token, address) => {
 	axios
 		.post(PAYMENT_SERVER_URL, {
 			token,
@@ -30,21 +30,21 @@ const onToken = (total, description) => (token, address) => {
 	axios.post("https://minor-2b2f5.firebaseio.com/orders.json", {
 		token,
 		address,
-		total,
-		description,
+		cartItems,
 	});
 };
 
 const ToPaisa = (total) => total * 100;
+let items = null;
 
 const Payment = ({ total, cartItems }) => {
-	// Todo: Store cartItems in stripe payment, as well as in firebase database.
+	items = (cartItems.map(i => i.name+`(id: ${i.id}), no: ${i.quantity} `))
 	return (
 		<StripeCheckout
 			name="Pets Nepal"
-			description={cartItems}
+			description={items}
 			amount={ToPaisa(total)}
-			token={onToken(total)}
+			token={onToken(total, cartItems)}
 			currency="USD"
 			shippingAddress
 			billingAddress
