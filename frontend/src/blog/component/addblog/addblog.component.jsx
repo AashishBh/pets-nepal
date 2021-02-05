@@ -6,6 +6,8 @@ import Button from "react-bootstrap/Button";
 import uniqid from "uniqid";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
+import { connect } from "react-redux";
+import { selectCurrentUser } from "../../../redux/user/user-selectors";
 
 class AddBlog extends Component {
 	state = {
@@ -13,6 +15,8 @@ class AddBlog extends Component {
 		content: "",
 		id: uniqid("blogId-"),
 		submitted: false,
+		author: "",
+		date: null
 	};
 
 	formSubmitHandler = (event) => {
@@ -21,6 +25,8 @@ class AddBlog extends Component {
 			title: this.state.title,
 			content: this.state.content,
 			id: this.state.id,
+			author: this.props.currentUser.displayName,
+			date: Date.now()
 		};
 		axios
 			.post("https://minor-2b2f5.firebaseio.com/blogs.json", data)
@@ -76,4 +82,8 @@ class AddBlog extends Component {
 	}
 }
 
-export default AddBlog;
+const mapStateToProps = (state) => ({
+	currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps, null)(AddBlog);

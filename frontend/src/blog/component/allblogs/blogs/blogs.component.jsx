@@ -1,11 +1,15 @@
 import React from "react";
-import uniqid from "uniqid";
+// import uniqid from "uniqid";
 // import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { connect } from "react-redux";
+import { selectCurrentUser } from "../../../../redux/user/user-selectors";
 
-const blogs = (props) => (
+const blogs = (props) => {
+	console.log(props)
+	return (
 	<Card>
 		<Row>
 			<Col sm={2}>
@@ -27,13 +31,18 @@ const blogs = (props) => (
 					<Card.Text>{props.body}</Card.Text>
 				</Card.Body>
 				<Card.Footer>
-					<small className="text-muted">AUTHOR: {uniqid()}</small>
+					<small className="text-muted">By: {props.author}</small>
 				</Card.Footer>
 			</Col>
 		</Row>
 	</Card>
-);
+)
+}
 
-export default blogs;
+const mapStateToProps = (state) => ({
+	currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps, null)(blogs);
 
 // <Link to={`/blog/${props.id}`}>{props.title}</Link>

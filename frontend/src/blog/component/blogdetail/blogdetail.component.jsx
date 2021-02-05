@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
+import { connect } from "react-redux";
+import { selectCurrentUser } from "../../../redux/user/user-selectors";
 
 class BlogDetail extends Component {
 	state = {
@@ -31,8 +33,8 @@ class BlogDetail extends Component {
 					</Card.Header>
 					<Card.Body>
 						<Card.Title style={{ fontSize: "0.8rem" }}>
-							By: AUTHOR
-							<br /> On: Today's date{" "}
+							By: {this.state.post.author }
+							<br /> On: {Date(this.state.post.date).toLocaleString("en-US")}
 						</Card.Title>
 						<Card.Text>{this.state.post.content}</Card.Text>
 					</Card.Body>
@@ -42,4 +44,9 @@ class BlogDetail extends Component {
 	}
 }
 
-export default BlogDetail;
+const mapStateToProps = (state) => ({
+	currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps, null)(BlogDetail);
+

@@ -3,6 +3,8 @@ import Container from "react-bootstrap/Container";
 import Button from "react-bootstrap/Button";
 import Nav from "react-bootstrap/Nav";
 import AllBlogs from "../../component/allblogs/allblogs.component";
+import { connect } from "react-redux";
+import { selectCurrentUser } from "../../../redux/user/user-selectors";
 import { Link } from "react-router-dom";
 
 class Blog extends Component {
@@ -10,10 +12,14 @@ class Blog extends Component {
 		return (
 			<Container>
 				<Nav className="justify-content-end">
-					<Link to="/add/blog">
-						{" "}
-						<Button variant="outline-primary">New Blog</Button>{" "}
-					</Link>
+					{this.props.currentUser ? (
+						<Link to="/add/blog">
+							{" "}
+							<Button variant="outline-primary">
+								New Blog
+							</Button>{" "}
+						</Link>
+					) : null}
 				</Nav>
 				<br />
 				<AllBlogs />
@@ -22,4 +28,8 @@ class Blog extends Component {
 	}
 }
 
-export default Blog;
+const mapStateToProps = (state) => ({
+	currentUser: selectCurrentUser(state),
+});
+
+export default connect(mapStateToProps, null)(Blog);

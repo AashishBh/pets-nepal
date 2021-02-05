@@ -32,6 +32,7 @@ class AllBlogs extends Component {
 						key={post.id}
 						title={post.title}
 						body={post.content}
+						author={post.author}
 						id={post.id}
 						clicked={() => this.blogSelectHandler(post.id)}
 					/>
