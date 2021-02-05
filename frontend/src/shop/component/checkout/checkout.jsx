@@ -6,7 +6,6 @@ import {
 	selectCartTotal,
 } from "../../../redux/cart/cart-selectors";
 import Payment from "./payment";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 
 const checkout = ({ cartItems, total }) => {
