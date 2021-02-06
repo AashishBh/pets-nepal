@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import axios from "axios";
+import renderHTML from 'react-render-html';
 import { connect } from "react-redux";
 import { selectCurrentUser } from "../../../redux/user/user-selectors";
 
 class BlogDetail extends Component {
 	state = {
 		post: {},
+		content: null
 	};
 
 	componentDidMount = () => {
@@ -21,10 +23,13 @@ class BlogDetail extends Component {
 				});
 				const arrx = arr.filter((key) => key.id === id);
 				this.setState({ post: arrx[0] });
+				// console.log(arrx[0].content._cache.html)
+				this.setState({ content: arrx[0].content._cache.html})
 			});
 	};
 
 	render() {
+		// console.log(this.state.content)
 		return (
 			<Container>
 				<Card>
@@ -36,7 +41,9 @@ class BlogDetail extends Component {
 							By: {this.state.post.author }
 							<br /> On: {Date(this.state.post.date).toLocaleString("en-US")}
 						</Card.Title>
-						<Card.Text>{this.state.post.content}</Card.Text>
+						</Card.Body>
+						<Card.Body>
+						<Card.Text>{renderHTML(String(this.state.content))}</Card.Text>
 					</Card.Body>
 				</Card>
 			</Container>

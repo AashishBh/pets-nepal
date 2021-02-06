@@ -7,16 +7,17 @@ import uniqid from "uniqid";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import RichTextEditor from "react-rte";
 import { selectCurrentUser } from "../../../redux/user/user-selectors";
 
 class AddBlog extends Component {
 	state = {
 		title: "",
-		content: "",
+		content: RichTextEditor.createEmptyValue(),
 		id: uniqid("blogId-"),
 		submitted: false,
 		author: "",
-		date: null
+		date: null,
 	};
 
 	formSubmitHandler = (event) => {
@@ -26,7 +27,7 @@ class AddBlog extends Component {
 			content: this.state.content,
 			id: this.state.id,
 			author: this.props.currentUser.displayName,
-			date: Date.now()
+			date: Date.now(),
 		};
 		axios
 			.post("https://minor-2b2f5.firebaseio.com/blogs.json", data)
@@ -39,6 +40,17 @@ class AddBlog extends Component {
 	handleChange = (event) => {
 		const { value, name } = event.target;
 		this.setState({ [name]: value });
+	};
+
+	onChange = (value) => {
+		this.setState({ content: value });
+		if (this.props.onChange) {
+			// Send the changes up to the parent component as an HTML string.
+			// This is here to demonstrate using `.toString()` but in a real app it
+			// would be better to avoid generating a string on each change.
+			this.props.onChange(value.toString("html"));
+		}
+		console.log(value.toString("html"));
 	};
 
 	render() {
@@ -65,13 +77,18 @@ class AddBlog extends Component {
 					</Form.Group>
 					<Form.Group controlId="formGroupText">
 						<Form.Label>CONTENT</Form.Label>
-						<Form.Control
-							type="text"
-							name="content"
-							placeholder="Enter content"
+						<RichTextEditor
 							value={this.state.content}
-							onChange={this.handleChange}
+							onChange={this.onChange}
 						/>
+
+						{/**<Form.Control
+													type="text"
+													name="content"
+													placeholder="Enter content"
+													value={this.state.co	ntent}
+													onChange={this.handleChange}
+												/>**/}
 					</Form.Group>
 					<Button variant="primary" type="submit">
 						Submit

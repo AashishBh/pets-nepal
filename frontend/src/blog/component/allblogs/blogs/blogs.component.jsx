@@ -28,7 +28,7 @@ const blogs = (props) => {
 					<Card.Title onClick={props.clicked}>
 						<h3>{props.title}</h3>
 					</Card.Title>
-					<Card.Text>{props.body}</Card.Text>
+					{/**<Card.Text>{props.body}</Card.Text>**/}
 				</Card.Body>
 				<Card.Footer>
 					<small className="text-muted">By: {props.author}</small>
