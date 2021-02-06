@@ -9,39 +9,44 @@ import { selectCurrentUser } from "../../redux/user/user-selectors";
 import { selectCartCount } from "../../redux/cart/cart-selectors";
 
 const Header = ({ currentUser, productCount }) => (
-	<Navbar collapseOnSelect expand="lg">
-		<Navbar.Brand>
-			<Link to="/"> Pets Nepal </Link>
-		</Navbar.Brand>
-		<Navbar.Toggle aria-controls="responsive-navbar-nav" />
-		<Navbar.Collapse id="responsive-navbar-nav">
-			<Nav className="mr-auto">
-				<Navbar>
-					<Link to="/shop">Shop</Link>
-				</Navbar>
-				<Navbar>
-					<Link to="/blog">Blog</Link>
-				</Navbar>
-			</Nav>
-			<Nav>
-				{currentUser ? (
+	<div>
+		<Navbar collapseOnSelect expand="lg">
+			<Navbar.Brand>
+				<Link to="/"> Pets Nepal </Link>
+			</Navbar.Brand>
+			<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+			<Navbar.Collapse id="responsive-navbar-nav">
+				<Nav className="mr-auto">
 					<Navbar>
-						{" "}
-						<span onClick={() => auth.signOut()}> SIGN OUT </span>{" "}
+						<Link to="/shop">Shop</Link>
 					</Navbar>
-				) : (
 					<Navbar>
-						<Link to="/signin">SIGN IN</Link>
+						<Link to="/blog">Blog</Link>
 					</Navbar>
-				)}
-				<Navbar>
-					<Link to="/checkout">
-						Cart<Badge variant="light">{productCount}</Badge>
-					</Link>
-				</Navbar>
-			</Nav>
-		</Navbar.Collapse>
-	</Navbar>
+				</Nav>
+				<Nav>
+					{currentUser ? (
+						<Navbar>
+							{" "}
+							<span onClick={() => auth.signOut()}>
+								{" "}
+								SIGN OUT{" "}
+							</span>{" "}
+						</Navbar>
+					) : (
+						<Navbar>
+							<Link to="/signin">SIGN IN</Link>
+						</Navbar>
+					)}
+					<Navbar>
+						<Link to="/checkout">
+							Cart<Badge variant="light">{productCount}</Badge>
+						</Link>
+					</Navbar>
+				</Nav>
+			</Navbar.Collapse>
+		</Navbar>
+	</div>
 );
 
 const mapStateToProps = (state) => ({
