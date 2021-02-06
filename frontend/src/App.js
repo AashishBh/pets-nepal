@@ -12,15 +12,19 @@ import SignUp from "./components/signup/signup.component";
 import Header from "./components/header/header.component";
 
 import Menu from "./shop/component/menu";
-import ProductDetail from "./shop/component/product-detail"
+import ProductDetail from "./shop/component/product-detail";
 import Category from "./shop/container/category";
 import Checkout from "./shop/component/checkout/checkout";
 
 import PetHospitals from "./others/pet-hospitals";
 
+import Adoption from "./adoption/container/page";
 
 import Blog from "./blog/container/blog/blog.component";
 import BlogDetail from "./blog/component/blogdetail/blogdetail.component";
+
+
+const AddPet = React.lazy(() => import("./adoption/components/add"));
 const AddBlog = React.lazy(() =>
   import("./blog/component/addblog/addblog.component")
 );
@@ -69,7 +73,7 @@ class App extends Component {
               this.props.currentUser ? <Redirect to="/" /> : <SignUp />
             }
           />
-          <Route exact path="/shop" component={Menu} />          
+          <Route exact path="/shop" component={Menu} />
           <Route exact path="/shop/:id" component={Category} />
           <Route exact path="/product/:id" component={ProductDetail} />
           <Route exact path="/checkout" component={Checkout} />
@@ -82,6 +86,16 @@ class App extends Component {
             render={() => (
               <Suspense fallback=<div>Loading...</div>>
                 <AddBlog />
+              </Suspense>
+            )}
+          />
+          <Route exact path="/adoption" component={Adoption} />
+          <Route
+            exact
+            path="/adoption/add"
+            render={() => (
+              <Suspense fallback=<div>Loading...</div>>
+                <AddPet />
               </Suspense>
             )}
           />
