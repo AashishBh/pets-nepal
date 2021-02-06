@@ -4,7 +4,16 @@
   flex-direction: column;
   height: 350px;
   position: relative;
-  border: 1px solid red;
+}
+
+.productx{
+  height: 500px;
+  position: relative;
+  width: 25vw;
+  display: flex;
+  flex-direction: column;
+  left: 25%;
+  margin-top: 4%;
 }
 
 .image {
@@ -14,11 +23,21 @@
   background-position: center;
   margin-bottom: 5px;
   border: 2px solid black;
+}
+
+
+.imagex {
+  width: 100%;
+  height: 95%;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 5px;
+  border: 2px solid black;
   transition: all 0.3s ease 0s;
 }
 
-.image:hover{
-  transform: scale(1.5);
+.imagex:hover{
+  transform: scale(1.25);
 }
 
 .cart-icon {
@@ -26,4 +45,30 @@
   margin-bottom: 10px;
   width: 30px;
   height: 30px;
+}
+
+.product-detailx{
+  /*border: 1px solid red;*/
+  position: absolute;
+  left: 120%;
+  top: 30%;
+  width: 100%;
+}
+
+.namex {
+  font-size: 2.5em;
+  font-weight: unset;
+}
+
+.pricex {
+  font-size: 1em;
+}
+
+.cart-iconx {
+  margin-left: -15%;
+  margin-bottom: -30px;
+  margin-top: 20%;
+  position: relative;
+  width: 50px;
+  height: 50px;
 }

@@ -31,19 +31,19 @@ class ProductDetail extends React.Component {
 		// console.log(this.props.addItem)
 		return (
 			<div>
-				<div className="products">
+				<div className="productx">
 					<div
-						className="image"
+						className="imagex"
 						style={{
 							backgroundImage: `url(${imageUrl})`,
 						}}
 					/>
-					<div className="product-detail">
-						<span className="name">{name}</span>
+					<div className="product-detailx">
+						<span className="namex">{name}</span>
 						<br />
-						<span className="price">{price}</span>
+						<span className="pricex">Rs. {price}</span>
 						<CartIcon
-							className="cart-icon"
+							className="cart-iconx"
 							onClick={() => this.props.addItem(this.state.item)}
 						/>
 					</div>
