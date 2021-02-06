@@ -17,6 +17,7 @@ import Category from "./shop/container/category";
 import Checkout from "./shop/component/checkout/checkout";
 
 import PetHospitals from "./others/pet-hospitals";
+import PetBreeding from "./others/breeding";
 
 import Adoption from "./adoption/container/page";
 
@@ -78,6 +79,7 @@ class App extends Component {
           <Route exact path="/product/:id" component={ProductDetail} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/hospitals" component={PetHospitals} />
+          <Route exact path="/breeding" component={PetBreeding} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blog/:id" component={BlogDetail} />
           <Route
