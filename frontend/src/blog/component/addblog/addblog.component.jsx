@@ -73,6 +73,7 @@ class AddBlog extends Component {
 							placeholder="Enter title"
 							value={this.state.title}
 							onChange={this.handleChange}
+							required
 						/>
 					</Form.Group>
 					<Form.Group controlId="formGroupText">
@@ -80,6 +81,7 @@ class AddBlog extends Component {
 						<RichTextEditor
 							value={this.state.content}
 							onChange={this.onChange}
+							required
 						/>
 
 						{/**<Form.Control

@@ -75,6 +75,7 @@ class AddPet extends Component {
 							placeholder="Enter pet name, type."
 							value={this.state.petName}
 							onChange={this.handleChange}
+							required
 						/>
 					</Form.Group>
 					<Form.Group controlId="formGroupText">
@@ -85,6 +86,7 @@ class AddPet extends Component {
 							placeholder="Enter pet image link."
 							value={this.state.imageLink}
 							onChange={this.handleChange}
+							required
 						/>
 					</Form.Group>
 					<Form.Group controlId="formGroupText">
@@ -93,14 +95,6 @@ class AddPet extends Component {
 							value={this.state.description}
 							onChange={this.onChange}
 						/>
-
-						{/**<Form.Control
-													type="text"
-													name="content"
-													placeholder="Enter content"
-													value={this.state.co	ntent}
-													onChange={this.handleChange}
-												/>**/}
 					</Form.Group>
 					<Button variant="primary" type="submit">
 						Submit

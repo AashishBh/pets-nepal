@@ -16,7 +16,7 @@ const blogs = (props) => {
 				<Card.Img
 					variant="top"
 					className="rounded float-left"
-					src="https://picsum.photos/200"
+					src="https://placedog.net/200/200/sepia/"
 					style={{
 						width: "200px",
 						margin: "left",
