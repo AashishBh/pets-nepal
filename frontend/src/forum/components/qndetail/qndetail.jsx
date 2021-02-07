@@ -4,6 +4,8 @@ import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
+import Modal from "react-bootstrap/Modal";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "../../../redux/user/user-selectors";
 import { firestore } from "../../../firebase/firebase.utils";
@@ -15,6 +17,8 @@ class QuestionDetail extends Component {
 		comment: "",
 		submitted: false,
 		id: "",
+		confirmDelete: false,
+		showModal: false,
 	};
 
 	componentDidMount = async () => {
@@ -31,6 +35,13 @@ class QuestionDetail extends Component {
 		this.setState({ post: doc.data() });
 		this.setState({ comments: doc.data().comments });
 	};
+
+	deleteQn = async () => {
+		await firestore.collection("questions").doc(this.state.id).delete();
+	};
+
+	handleClose = () => this.setState({ showModal: false });
+	handleShow = () => this.setState({ showModal: true });
 
 	handleSubmit = async (event) => {
 		event.preventDefault();
@@ -56,6 +67,30 @@ class QuestionDetail extends Component {
 	render() {
 		return (
 			<Container>
+			{this.props.currentUser === null ? null : (
+					<div>
+						{this.props.currentUser.displayName ===
+						this.state.post.author ? (
+							<Button onClick={this.handleShow}> Delete </Button>
+						) : null}
+					</div>
+				)}
+			<Modal show={this.state.showModal} onHide={this.handleClose}>
+					<Modal.Header closeButton></Modal.Header>
+					<Modal.Body>
+						Are you sure you want to delete this blog?
+					</Modal.Body>
+					<Modal.Footer>
+						<Link to="/forum">
+							<Button variant="danger" onClick={this.deleteQn}>
+								Yes
+							</Button>
+						</Link>
+						<Button variant="primary" onClick={this.handleClose}>
+							No
+						</Button>
+					</Modal.Footer>
+				</Modal>
 				<Card>
 					<Card.Header>
 						<h1>{this.state.post.title}</h1>
