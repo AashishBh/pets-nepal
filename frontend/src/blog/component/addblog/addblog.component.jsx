@@ -3,38 +3,38 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import uniqid from "uniqid";
-import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import RichTextEditor from "react-rte";
 import { selectCurrentUser } from "../../../redux/user/user-selectors";
+import { firestore } from "../../../firebase/firebase.utils";
 
 class AddBlog extends Component {
 	state = {
 		title: "",
 		content: RichTextEditor.createEmptyValue(),
-		id: uniqid("blogId-"),
 		submitted: false,
 		author: "",
 		date: null,
 	};
 
-	formSubmitHandler = (event) => {
+	formSubmitHandler = async (event) => {
 		event.preventDefault();
 		const data = {
 			title: this.state.title,
-			content: this.state.content,
-			id: this.state.id,
+			content: this.state.content.toString("html"),
 			author: this.props.currentUser.displayName,
 			date: Date.now(),
 		};
-		axios
-			.post("https://minor-2b2f5.firebaseio.com/blogs.json", data)
-			.then((response) => {
-				// console.log(response);
-				this.setState({ submitted: true });
-			});
+		const ref = await firestore.collection("blogs");
+		ref.add(data).then(this.setState({submitted: true}))
+		console.log(ref)
+		// axios
+		// 	.post("https://minor-2b2f5.firebaseio.com/blogs.json", data)
+		// 	.then((response) => {
+		// 		// console.log(response);
+		// 		this.setState({ submitted: true });
+		// 	});
 	};
 
 	handleChange = (event) => {

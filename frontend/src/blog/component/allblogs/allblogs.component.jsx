@@ -1,23 +1,21 @@
 import React, { Fragment, Component } from "react";
-import axios from "axios";
 import Blogs from "./blogs/blogs.component";
 import { withRouter } from "react-router-dom";
+import { firestore } from "../../../firebase/firebase.utils";
 
 class AllBlogs extends Component {
 	state = {
 		posts: [],
 	};
 
-	componentDidMount = () => {
-		axios
-			.get("https://minor-2b2f5.firebaseio.com/blogs.json")
-			.then((response) => {
-				const arr = Object.keys(response.data).map((key) => {
-					return response.data[key];
-				});
-				this.setState({ posts: arr });
-				console.log(this.state.posts);
-			});
+	componentDidMount = async () => {
+		const ref = await firestore.collection("blogs");
+		const snapshot = await ref.get().then(function (querySnapshot) {
+			return querySnapshot.docs.map((doc) =>
+				Object.assign(doc.data(), { id: doc.id })
+			);
+		});
+		this.setState({ posts: snapshot });
 	};
 
 	blogSelectHandler = (id) => {
