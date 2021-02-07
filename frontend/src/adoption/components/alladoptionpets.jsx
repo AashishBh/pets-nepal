@@ -1,23 +1,21 @@
 import React, { Fragment, Component } from "react";
-import axios from "axios";
 import Pet from "./pet";
 import { withRouter } from "react-router-dom";
+import { firestore } from "../../firebase/firebase.utils";
 
 class AllPets extends Component {
 	state = {
 		petInfo: [],
 	};
 
-	componentDidMount = () => {
-		axios
-			.get("https://minor-2b2f5.firebaseio.com/adoption.json")
-			.then((response) => {
-				const arr = Object.keys(response.data).map((key) => {
-					return response.data[key];
-				});
-				this.setState({ petInfo: arr });
-				console.log(this.state.petInfo);
-			});
+	componentDidMount = async () => {
+		const ref = await firestore.collection("adoption");
+		const snapshot = await ref.get().then(function (querySnapshot) {
+			return querySnapshot.docs.map((doc) =>
+				Object.assign(doc.data(), { id: doc.id })
+			);
+		});
+		this.setState({ petInfo: snapshot });
 	};
 
 	render() {
@@ -27,11 +25,12 @@ class AllPets extends Component {
 					<Pet
 						key={post.id}
 						petName={post.petName}
-						description={post.description._cache.html}
+						description={post.description}
 						by={post.by}
-						id={post.id}
 						date={post.date}
+						id={post.id}
 						imageLink={post.imageLink}
+						adopted={post.adopted}
 					/>
 				))}
 			</Fragment>

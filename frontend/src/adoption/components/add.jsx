@@ -3,41 +3,35 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import uniqid from "uniqid";
-import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import RichTextEditor from "react-rte";
 import { selectCurrentUser } from "../../redux/user/user-selectors";
+import { firestore } from "../../firebase/firebase.utils";
 
 class AddPet extends Component {
 	state = {
 		petName: "",
 		description: RichTextEditor.createEmptyValue(),
-		id: uniqid("blogId-"),
 		submitted: false,
 		imageLink: "",
 		by: "",
 		date: null,
+		adopted: false,
 	};
 
-	formSubmitHandler = (event) => {
+	formSubmitHandler = async (event) => {
 		event.preventDefault();
 		const data = {
 			petName: this.state.petName,
-			description: this.state.description,
-			id: this.state.id,
+			description: this.state.description.toString("html"),
 			by: this.props.currentUser.displayName,
 			imageLink: this.state.imageLink,
 			date: Date.now(),
+			adopted: this.state.adopted,
 		};
-		console.log(data)
-		axios
-			.post("https://minor-2b2f5.firebaseio.com/adoption.json", data)
-			.then((response) => {
-				// console.log(response);
-				this.setState({ submitted: true });
-			});
+		const ref = await firestore.collection("adoption");
+		ref.add(data).then(this.setState({ submitted: true }));
 	};
 
 	handleChange = (event) => {
@@ -61,7 +55,7 @@ class AddPet extends Component {
 		if (this.state.submitted) {
 			redirect = <Redirect to="/adoption" />;
 		}
-		if (this.props.currentUser === null){
+		if (this.props.currentUser === null) {
 			redirect = <Redirect to="/adoption" />;
 		}
 		return (
