@@ -10,14 +10,14 @@ const products = ({ item, addItem, history }) => {
 	const { name, imageUrl, price } = item;
 	return (
 		<div>
-			<div className="products">
+			<div className="products" onClick={() => history.push("/product/"+item.id)}>
 				<div
 					className="image"
 					style={{
 						backgroundImage: `url(${imageUrl})`,
 					}}
 				/>
-				<div className="product-detail" onClick={() => history.push("/product/"+item.id)}>
+				<div className="product-detail">
 					<span className="name">{name.toUpperCase()}</span>
 					<br />
 					<span className="price">Rs. {price}</span>

@@ -4,9 +4,9 @@ import "./subCategories.css";
 
 const subcategories = ({ title, items, val }) => {
   return (
-    <div className="">
+    <div className="title">
       <div>
-        <p className="">
+        <p className="subTitle">
           {title.toUpperCase()}
         </p>
       </div>

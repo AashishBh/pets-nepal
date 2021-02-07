@@ -1,7 +1,20 @@
 .subCategories {
-  width: 75vw;
+  width: 70vw;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 20px;
+  grid-gap: 13px;
+  margin-bottom: 20px;
+}
+
+.title {
+  /* padding-top: 20px; */
+  background-color: rgb(236, 235, 235);
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 9px;
+}
+
+.subTitle {
+  margin: 10px;
 }
