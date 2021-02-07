@@ -9,19 +9,36 @@ import Container from "react-bootstrap/Container";
 class Category extends Component {
 	state = {
 		products: CAT_PRODUCTS_DATA,
-		heading: 'cats'
+		heading: "cats",
+		reload: 1,
 	};
 
 	componentDidMount = () => {
 		const { id } = this.props.match.params;
 		if (id === "cats") {
 			this.setState({ products: CAT_PRODUCTS_DATA, heading: id });
+			this.setState({ reload: this.state.reload + 1 });
+			if (this.state.reload === 2) {
+				window.location.reload();
+			}
 		} else if (id === "dogs") {
 			this.setState({ products: DOG_PRODUCTS_DATA, heading: id });
+			this.setState({ reload: this.state.reload + 1 });
+			if (this.state.reload === 2) {
+				window.location.reload();
+			}
 		} else if (id === "fish") {
 			this.setState({ products: FISH_PRODUCTS_DATA, heading: id });
+			this.setState({ reload: this.state.reload + 1 });
+			if (this.state.reload === 2) {
+				window.location.reload();
+			}
 		} else if (id === "others") {
 			this.setState({ products: OTHER_PRODUCTS_DATA, heading: id });
+			this.setState({ reload: this.state.reload + 1 });
+			if (this.state.reload === 2) {
+				window.location.reload();
+			}
 		}
 	};
 
@@ -29,7 +46,7 @@ class Category extends Component {
 		return (
 			<div>
 				<Container>
-				<h1> {this.state.heading.toUpperCase()} </h1>
+					<h1> {this.state.heading.toUpperCase()} </h1>
 					{this.state.products.map(({ id, ...product }) => (
 						<Subcategories key={id} val={20} {...product} />
 					))}
