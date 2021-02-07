@@ -23,6 +23,21 @@ const Header = ({ currentUser, productCount }) => (
 					<Navbar>
 						<Link to="/blog">Blog</Link>
 					</Navbar>
+					<Navbar>
+						<Link to="/forum">Forum</Link>
+					</Navbar>
+					<Navbar>
+						<Link to="/adoption">Adoption</Link>
+					</Navbar>
+				</Nav>
+				<Nav>
+					<Navbar>
+						<Link to="/hospitals">Hospitals</Link>
+					</Navbar>
+
+					<Navbar>
+						<Link to="/breeding">Breeding</Link>
+					</Navbar>
 				</Nav>
 				<Nav>
 					{currentUser ? (

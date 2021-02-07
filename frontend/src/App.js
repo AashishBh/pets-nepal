@@ -24,11 +24,14 @@ import Adoption from "./adoption/container/page";
 import Blog from "./blog/container/blog/blog.component";
 import BlogDetail from "./blog/component/blogdetail/blogdetail.component";
 
+import Forum from "./forum/container/forum/page";
+import QuestionDetail from "./forum/components/qndetail/qndetail";
 
 const AddPet = React.lazy(() => import("./adoption/components/add"));
 const AddBlog = React.lazy(() =>
   import("./blog/component/addblog/addblog.component")
 );
+const AskQns = React.lazy(() => import("./forum/components/askqn/askqn"));
 
 class App extends Component {
   unsubscribeFromAuth = null;
@@ -98,6 +101,17 @@ class App extends Component {
             render={() => (
               <Suspense fallback=<div>Loading...</div>>
                 <AddPet />
+              </Suspense>
+            )}
+          />
+          <Route exact path="/forum" component={Forum} />
+          <Route exact path="/forum/:id" component={QuestionDetail} />
+          <Route
+            exact
+            path="/ask/question"
+            render={() => (
+              <Suspense fallback=<div>Loading...</div>>
+                <AskQns />
               </Suspense>
             )}
           />
