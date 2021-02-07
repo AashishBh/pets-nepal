@@ -56,7 +56,10 @@ class AddBlog extends Component {
 	render() {
 		let redirect = null;
 		if (this.state.submitted) {
-			redirect = <Redirect to="/" />;
+			redirect = <Redirect to="/blog" />;
+		}
+		if (this.props.currentUser === null){
+			redirect = <Redirect to="/blog" />;
 		}
 		return (
 			<Container>

@@ -31,6 +31,7 @@ class AddPet extends Component {
 			imageLink: this.state.imageLink,
 			date: Date.now(),
 		};
+		console.log(data)
 		axios
 			.post("https://minor-2b2f5.firebaseio.com/adoption.json", data)
 			.then((response) => {
@@ -58,6 +59,9 @@ class AddPet extends Component {
 	render() {
 		let redirect = null;
 		if (this.state.submitted) {
+			redirect = <Redirect to="/adoption" />;
+		}
+		if (this.props.currentUser === null){
 			redirect = <Redirect to="/adoption" />;
 		}
 		return (

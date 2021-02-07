@@ -42,6 +42,9 @@ class AskQn extends Component {
 		if (this.state.submitted) {
 			redirect = <Redirect to="/forum" />;
 		}
+		if (this.props.currentUser === null){
+			redirect = <Redirect to="/forum" />;
+		}
 		return (
 			<Container>
 				{redirect}
