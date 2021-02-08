@@ -79,7 +79,7 @@ class App extends Component {
           />
           <Route exact path="/shop" component={Menu} />
           <Route exact path="/shop/:id" component={Category} />
-          <Route exact path="/product/:id" component={ProductDetail} />
+          <Route exact path="/product/:routeUrl/:routeName/:id" component={ProductDetail} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/hospitals" component={PetHospitals} />
           <Route exact path="/breeding" component={PetBreeding} />

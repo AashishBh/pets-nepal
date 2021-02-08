@@ -2,15 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { addToCart } from "../../redux/cart/cart-actions";
-// import ProductDetail from "./product-detail";
 import { ReactComponent as CartIcon } from "../../assets/cart-icon.svg";
 import "./products.css";
 
-const products = ({ item, addItem, history }) => {
+const products = ({ item, routeName, routeUrl, addItem, history }) => {
 	const { name, imageUrl, price } = item;
 	return (
 		<div>
-			<div className="products" onClick={() => history.push("/product/"+item.id)}>
+			<div className="products" onClick={() => history.push("/product/"+ `${routeUrl}` +`${routeName}`+item.id)}>
 				<div
 					className="image"
 					style={{

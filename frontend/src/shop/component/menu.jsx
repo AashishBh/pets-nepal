@@ -1,12 +1,23 @@
 import React, { Component } from "react";
-import ALL_PRODUCTS_DATA from "../data/all_products_data";
 import Categories from "./categories";
 import Container from "react-bootstrap/Container";
+import { firestore } from "../../firebase/firebase.utils";
 
 class Menu extends Component {
   state = {
-    products: ALL_PRODUCTS_DATA,
+    products: [],
   };
+
+  componentDidMount = async () => {
+    const ref = await firestore.collection("featuredproducts");
+    const snapshot = await ref.get().then(function (querySnapshot) {
+      return querySnapshot.docs.map((doc) =>
+        Object.assign(doc.data(), { id: doc.id })
+      );
+    });
+    this.setState({ products: snapshot });
+  };
+
   render() {
     return (
       <Container className="menu">

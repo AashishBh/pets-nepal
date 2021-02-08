@@ -1,44 +1,50 @@
 import React, { Component } from "react";
 import Subcategories from "../component/subcategories";
-import CAT_PRODUCTS_DATA from "../data/cats_data";
-import DOG_PRODUCTS_DATA from "../data/dogs_data";
-import FISH_PRODUCTS_DATA from "../data/fish_data";
-import OTHER_PRODUCTS_DATA from "../data/others_data";
 import Container from "react-bootstrap/Container";
+import { firestore } from "../../firebase/firebase.utils";
 
 class Category extends Component {
 	state = {
-		products: CAT_PRODUCTS_DATA,
-		heading: "cats",
-		reload: 1,
+		products: [],
+		heading: "",
 	};
 
-	componentDidMount = () => {
+	componentDidMount = async () => {
 		const { id } = this.props.match.params;
+		const catRef = await firestore.collection("cats");
+		const catSnapshot = await catRef.get().then(function (querySnapshot) {
+			return querySnapshot.docs.map((doc) =>
+				Object.assign(doc.data(), { id: doc.id })
+			);
+		});
+		const dogRef = await firestore.collection("dogs");
+		const dogSnapshot = await dogRef.get().then(function (querySnapshot) {
+			return querySnapshot.docs.map((doc) =>
+				Object.assign(doc.data(), { id: doc.id })
+			);
+		});
+		const fishRef = await firestore.collection("fish");
+		const fishSnapshot = await fishRef.get().then(function (querySnapshot) {
+			return querySnapshot.docs.map((doc) =>
+				Object.assign(doc.data(), { id: doc.id })
+			);
+		});
+		const othersRef = await firestore.collection("others");
+		const othersSnapshot = await othersRef
+			.get()
+			.then(function (querySnapshot) {
+				return querySnapshot.docs.map((doc) =>
+					Object.assign(doc.data(), { id: doc.id })
+				);
+			});
 		if (id === "cats") {
-			this.setState({ products: CAT_PRODUCTS_DATA, heading: id });
-			this.setState({ reload: this.state.reload + 1 });
-			if (this.state.reload === 2) {
-				window.location.reload();
-			}
+			this.setState({ products: catSnapshot, heading: id });
 		} else if (id === "dogs") {
-			this.setState({ products: DOG_PRODUCTS_DATA, heading: id });
-			this.setState({ reload: this.state.reload + 1 });
-			if (this.state.reload === 2) {
-				window.location.reload();
-			}
+			this.setState({ products: dogSnapshot, heading: id });
 		} else if (id === "fish") {
-			this.setState({ products: FISH_PRODUCTS_DATA, heading: id });
-			this.setState({ reload: this.state.reload + 1 });
-			if (this.state.reload === 2) {
-				window.location.reload();
-			}
+			this.setState({ products: fishSnapshot, heading: id });
 		} else if (id === "others") {
-			this.setState({ products: OTHER_PRODUCTS_DATA, heading: id });
-			this.setState({ reload: this.state.reload + 1 });
-			if (this.state.reload === 2) {
-				window.location.reload();
-			}
+			this.setState({ products: othersSnapshot, heading: id });
 		}
 	};
 
