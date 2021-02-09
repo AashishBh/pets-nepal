@@ -8,13 +8,11 @@ import "./products.css";
 
 class ProductDetail extends React.Component {
 	state = {
-		products: [],
 		item: {},
 	};
 
 	componentDidMount = async () => {
 		const { routeUrl, routeName, id } = this.props.match.params;
-		console.log(routeUrl, routeName, id);
 
 		let docId = null;
 		if (routeName === "litter" || routeName === "supplies") {
@@ -33,12 +31,10 @@ class ProductDetail extends React.Component {
 		const doc = await ref.get();
 		const snapshot = doc.data().items.filter((i) => i.id === parseInt(id));
 		this.setState({ item: snapshot[0] });
-		console.log(this.state.item);
 	};
 
 	render() {
 		const { name, imageUrl, price } = this.state.item;
-		console.log(name, price);
 		return (
 			<div>
 				{

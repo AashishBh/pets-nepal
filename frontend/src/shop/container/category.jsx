@@ -11,7 +11,6 @@ class Category extends Component {
 
 	componentDidMount = async () => {
 		const { id } = this.props.match.params;
-		console.log( id)
 		const catRef = await firestore.collection("cats");
 		const catSnapshot = await catRef.get().then(function (querySnapshot) {
 			return querySnapshot.docs.map((doc) =>
@@ -55,7 +54,7 @@ class Category extends Component {
 				<Container>
 					<h1> {this.state.heading.toUpperCase()} </h1>
 					{this.state.products.map(({ id, ...product }) => (
-						<Subcategories key={id} val={20} {...product} />
+						<Subcategories key={id} routeUrl={this.state.heading+"/"} val={20} {...product} />
 					))}
 				</Container>
 			</div>
