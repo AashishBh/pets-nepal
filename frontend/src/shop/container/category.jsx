@@ -11,6 +11,7 @@ class Category extends Component {
 
 	componentDidMount = async () => {
 		const { id } = this.props.match.params;
+		console.log( id)
 		const catRef = await firestore.collection("cats");
 		const catSnapshot = await catRef.get().then(function (querySnapshot) {
 			return querySnapshot.docs.map((doc) =>

@@ -14,6 +14,7 @@ import Header from "./components/header/header.component";
 import Menu from "./shop/component/menu";
 import ProductDetail from "./shop/component/product-detail";
 import Category from "./shop/container/category";
+import Subcategory from "./shop/container/subcategory";
 import Checkout from "./shop/component/checkout/checkout";
 
 import PetHospitals from "./others/pet-hospitals";
@@ -79,6 +80,7 @@ class App extends Component {
           />
           <Route exact path="/shop" component={Menu} />
           <Route exact path="/shop/:id" component={Category} />
+          <Route exact path="/shop/:routeUrl/:routeName" component={Subcategory} />
           <Route exact path="/product/:routeUrl/:routeName/:id" component={ProductDetail} />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/hospitals" component={PetHospitals} />
