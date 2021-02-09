@@ -9,7 +9,7 @@ const products = ({ item, routeName, routeUrl, addItem, history }) => {
 	const { name, imageUrl, price } = item;
 	return (
 		<div>
-			<div className="products" onClick={() => history.push("/product/"+ `${routeUrl}` +`${routeName}`+item.id)}>
+			<div className="products" onClick={() => history.push(`/product/${routeUrl}${routeName}${item.id}`)}>
 				<div
 					className="image"
 					style={{
