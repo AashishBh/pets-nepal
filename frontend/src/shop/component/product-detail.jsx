@@ -21,7 +21,11 @@ class ProductDetail extends React.Component {
 			docId = 1;
 		} else if (routeName === "food" || routeName === "foodntreats") {
 			docId = 0;
-		} else {
+		} else if (
+			routeName === "accessories" ||
+			routeName === "livefish" ||
+			routeName === "others"
+		) {
 			docId = 2;
 		}
 
