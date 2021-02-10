@@ -28,6 +28,9 @@ import BlogDetail from "./blog/component/blogdetail/blogdetail.component";
 import Forum from "./forum/container/forum/page";
 import QuestionDetail from "./forum/components/qndetail/qndetail";
 
+import AdminPage from "./admin/container/adminpage";
+import AddProducts from "./admin/component/addproducts";
+
 const AddPet = React.lazy(() => import("./adoption/components/add"));
 const AddBlog = React.lazy(() =>
   import("./blog/component/addblog/addblog.component")
@@ -78,10 +81,20 @@ class App extends Component {
               this.props.currentUser ? <Redirect to="/" /> : <SignUp />
             }
           />
+          <Route exact path="/admin" component={AdminPage} />
+          <Route exact path="/admin/addproducts" component={AddProducts} />
           <Route exact path="/shop" component={Menu} />
           <Route exact path="/shop/:id" component={Category} />
-          <Route exact path="/shop/:routeUrl/:routeName" component={Subcategory} />
-          <Route exact path="/product/:routeUrl/:routeName/:id" component={ProductDetail} />
+          <Route
+            exact
+            path="/shop/:routeUrl/:routeName"
+            component={Subcategory}
+          />
+          <Route
+            exact
+            path="/product/:routeUrl/:routeName/:id"
+            component={ProductDetail}
+          />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/hospitals" component={PetHospitals} />
           <Route exact path="/breeding" component={PetBreeding} />
