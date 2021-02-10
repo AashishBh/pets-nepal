@@ -39,9 +39,9 @@ const AddProducts = ({ currentUser }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 
-		const countRef = firestore.collection("productCount").doc('0')
-		const cRef = await countRef.get()
-		let count = cRef.data().count
+		const countRef = firestore.collection("productCount").doc("0");
+		const cRef = await countRef.get();
+		let count = cRef.data().count;
 
 		let docId = null;
 		if (subcategory === "Food and Treats" || subcategory === "Food") {
@@ -57,7 +57,7 @@ const AddProducts = ({ currentUser }) => {
 		}
 
 		const newProduct = {
-			id: parseInt(count)+1,
+			id: parseInt(count) + 1,
 			imageUrl: productImageLink,
 			name: productName,
 			price: productPrice,
@@ -69,8 +69,10 @@ const AddProducts = ({ currentUser }) => {
 		const collections = await sfRef.get().then((i) => i.data());
 		const snapshot = Object.values(collections.items);
 		snapshot.push(newProduct);
-		await sfRef.update({ items: snapshot }).then(alert("Product successfully added!"));
-		await countRef.update({count: newProduct.id })
+		await sfRef
+			.update({ items: snapshot })
+			.then(alert("Product successfully added!"));
+		await countRef.update({ count: newProduct.id });
 	};
 
 	const changeSelectOptionHandler = (event) => {
@@ -79,68 +81,67 @@ const AddProducts = ({ currentUser }) => {
 
 	return (
 		<Container>
-				<div>
-					<Jumbotron>
-						<h2> ADD PRODUCT </h2>
-					</Jumbotron>
-					<Form onSubmit={handleSubmit}>
-						<Form.Group controlId="exampleForm.ControlSelect1">
-							<Form.Label>Category</Form.Label>
-							<Form.Control
-								as="select"
-								onChange={changeSelectOptionHandler}
-							>
-								<option>Cats</option>
-								<option>Dogs</option>
-								<option>Fish</option>
-								<option>Others</option>
-							</Form.Control>
-						</Form.Group>
-						<Form.Group controlId="exampleForm.ControlSelect1">
-							<Form.Label>Subcategory</Form.Label>
-							<Form.Control
-								as="select"
-								onChange={(e) => {
-									console.log(e.target.value);
-									setSubcategory(e.target.value);
-								}}
-							>
-								{options}
-							</Form.Control>
-						</Form.Group>
-						<Form.Group controlId="formGroupText">
-							<Form.Label>Product Name</Form.Label>
-							<Form.Control
-								type="text"
-								onChange={(e) => setProductName(e.target.value)}
-								required
-							/>
-						</Form.Group>
-						<Form.Group controlId="formGroupText">
-							<Form.Label>Product Price</Form.Label>
-							<Form.Control
-								type="text"
-								onChange={(e) =>
-									setProductPrice(e.target.value)
-								}
-								required
-							/>
-						</Form.Group>
-						<Form.Group controlId="formGroupText">
-							<Form.Label>Product Image Link</Form.Label>
-							<Form.Control
-								type="text"
-								onChange={(e) =>
-									setProductImageLink(e.target.value)
-								}
-								required
-							/>
-						</Form.Group>
-						<Button variant="primary" type="submit">
-							Submit
-						</Button>
-					</Form>
-				</div>
+			<div>
+				<Jumbotron>
+					<h2> ADD PRODUCT </h2>
+				</Jumbotron>
+				<Form onSubmit={handleSubmit}>
+					<Form.Group controlId="exampleForm.ControlSelect1">
+						<Form.Label>Category</Form.Label>
+						<Form.Control
+							as="select"
+							defaultValue="Cats"
+							onChange={changeSelectOptionHandler}
+						>
+							<option>Cats</option>
+							<option>Dogs</option>
+							<option>Fish</option>
+							<option>Others</option>
+						</Form.Control>
+					</Form.Group>
+					<Form.Group controlId="exampleForm.ControlSelect1">
+						<Form.Label>Subcategory</Form.Label>
+						<Form.Control
+							as="select"
+							onChange={(e) => {
+								console.log(e.target.value);
+								setSubcategory(e.target.value);
+							}}
+						>
+							{options}
+						</Form.Control>
+					</Form.Group>
+					<Form.Group controlId="formGroupText">
+						<Form.Label>Product Name</Form.Label>
+						<Form.Control
+							type="text"
+							onChange={(e) => setProductName(e.target.value)}
+							required
+						/>
+					</Form.Group>
+					<Form.Group controlId="formGroupText">
+						<Form.Label>Product Price</Form.Label>
+						<Form.Control
+							type="text"
+							onChange={(e) => setProductPrice(e.target.value)}
+							required
+						/>
+					</Form.Group>
+					<Form.Group controlId="formGroupText">
+						<Form.Label>Product Image Link</Form.Label>
+						<Form.Control
+							type="text"
+							onChange={(e) =>
+								setProductImageLink(e.target.value)
+							}
+							required
+						/>
+					</Form.Group>
+					<Button variant="primary" type="submit">
+						Submit
+					</Button>
+				</Form>
+			</div>
 			{/*) : (
 				<Redirect to="/" />
 			)}*/}

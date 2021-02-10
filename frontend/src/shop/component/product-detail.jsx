@@ -49,6 +49,7 @@ class ProductDetail extends React.Component {
 							<span className="namex">{name}</span>
 							<br />
 							<span className="pricex">Rs. {price}</span>
+							<p> The price here includes all the taxes. Delivery charges not included. </p>
 							<CartIcon
 								className="cart-iconx"
 								onClick={() =>
