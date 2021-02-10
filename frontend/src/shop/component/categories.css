@@ -1,0 +1,13 @@
+.heading {
+  margin-top: 30px;
+  width: 94%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading:hover {
+  -webkit-text-stroke: 0.5px rgb(44, 44, 44);
+  cursor: pointer;
+  color: whitesmoke;
+}
