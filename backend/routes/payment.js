@@ -28,7 +28,7 @@ const paymentApi = (app) => {
           currency: "usd",
           customer: customer.id,
           receipt_email: token.email,
-          description: `${description}`,
+          description: `Purchased for ${total}`,
           shipping: {
             name: token.card.name,
             address: {
