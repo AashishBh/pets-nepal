@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import "./products.css";
+import {formatName} from "./formatting.utils";
 
 const products = ({ item, routeName, routeUrl, history }) => {
 	const { name, imageUrl, price } = item;
@@ -14,7 +15,7 @@ const products = ({ item, routeName, routeUrl, history }) => {
 					}}
 				/>
 				<div className="product-detail">
-					<span className="name">{name.toUpperCase()}</span>
+					<span className="name">{formatName(name.toUpperCase())}</span>
 					<br />
 					<span className="price">Rs. {price}</span>
 				</div>

@@ -67,7 +67,7 @@ class QuestionDetail extends Component {
 	render() {
 		return (
 			<Container>
-			{this.props.currentUser === null ? null : (
+				{this.props.currentUser === null ? null : (
 					<div>
 						{this.props.currentUser.displayName ===
 						this.state.post.author ? (
@@ -75,7 +75,7 @@ class QuestionDetail extends Component {
 						) : null}
 					</div>
 				)}
-			<Modal show={this.state.showModal} onHide={this.handleClose}>
+				<Modal show={this.state.showModal} onHide={this.handleClose}>
 					<Modal.Header closeButton></Modal.Header>
 					<Modal.Body>
 						Are you sure you want to delete this blog?
@@ -122,9 +122,13 @@ class QuestionDetail extends Component {
 								value={this.state.comment}
 								onChange={this.handleChange}
 							/>
-							<Button variant="primary" type="submit">
-								Submit
-							</Button>
+							{this.props.currentUser ? (
+								<Button variant="primary" type="submit">
+									Submit
+								</Button>
+							) : (
+								<em> Please sign in to join the discussion. </em>
+							)}
 						</Form>
 					</Card.Text>
 				</Card>

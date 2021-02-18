@@ -4,7 +4,6 @@ import {withRouter} from "react-router-dom";
 import "./subCategories.css";
 
 const subcategories = ({ title, items, val, routeName, routeUrl, history }) => {
-  console.log(routeUrl)
   return (
     <div className="title">
       <div>

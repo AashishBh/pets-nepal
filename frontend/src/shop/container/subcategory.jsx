@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Products from "../component/products";
+import Container from "react-bootstrap/Container";
 import { firestore } from "../../firebase/firebase.utils";
 
 const Subcategory = ({ match }) => {
@@ -34,6 +35,7 @@ const Subcategory = ({ match }) => {
 	}, [match.params]);
 
 	return (
+		<Container>
 		<div className="title">
 			<div>
 				<p className="subTitle">
@@ -58,6 +60,7 @@ const Subcategory = ({ match }) => {
 				</p>
 			)}
 		</div>
+		</Container>
 	);
 };
 

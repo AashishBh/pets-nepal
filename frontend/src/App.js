@@ -29,6 +29,7 @@ import Forum from "./forum/container/forum/page";
 import QuestionDetail from "./forum/components/qndetail/qndetail";
 
 import AdminPage from "./admin/container/adminpage";
+import OrdersList from "./admin/component/orderslist";
 import AddProducts from "./admin/component/addproducts";
 
 const AddPet = React.lazy(() => import("./adoption/components/add"));
@@ -83,6 +84,7 @@ class App extends Component {
           />
           <Route exact path="/admin" component={AdminPage} />
           <Route exact path="/admin/addproducts" component={AddProducts} />
+          <Route exact path="/admin/orders" component={OrdersList} />
           <Route exact path="/shop" component={Menu} />
           <Route exact path="/shop/:id" component={Category} />
           <Route

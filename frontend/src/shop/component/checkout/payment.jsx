@@ -3,6 +3,7 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import { connect } from "react-redux";
+import {firestore} from "../../../firebase/firebase.utils"; 
 import { selectCurrentUser } from "../../../redux/user/user-selectors";
 import { clearAll } from "../../../redux/cart/cart-actions";
 
@@ -21,7 +22,7 @@ const errorPayment = (data) => {
 	alert("Payment Error");
 };
 
-const onToken = (total, cartItems, clearCart) => (token, address) => {
+const onToken = (total, cartItems, clearCart, currentUser, delivered) => async (token, address) => {
 	axios
 		.post(PAYMENT_SERVER_URL, {
 			token,
@@ -30,11 +31,15 @@ const onToken = (total, cartItems, clearCart) => (token, address) => {
 		})
 		.then(successPayment)
 		.catch(errorPayment);
-	axios.post("https://minor-2b2f5.firebaseio.com/orders.json", {
+	const orderData = {
 		token,
 		address,
 		cartItems,
-	});
+		currentUser,
+		delivered
+	};
+	const ref = await firestore.collection("orders");
+	ref.add(orderData)
 	clearCart();
 };
 
@@ -50,7 +55,7 @@ const Payment = ({ total, cartItems, currentUser, clearCart }) => {
 					name="Pets Nepal"
 					description= {`Your items: ${items}`}
 					amount={ToPaisa(total)}
-					token={onToken(total, cartItems, clearCart)}
+					token={onToken(total, cartItems, clearCart, currentUser, false)}
 					currency="USD"
 					shippingAddress
 					billingAddress
