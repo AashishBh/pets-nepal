@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import { selectCurrentUser } from "../../redux/user/user-selectors";
 import { firestore } from "../../firebase/firebase.utils";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
@@ -8,7 +6,7 @@ import Table from "react-bootstrap/Table";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 
-const OrdersList = ({ currentUser }) => {
+const OrdersList = () => {
 	const [orders, setOrders] = useState("");
 
 	useEffect(() => {
@@ -128,8 +126,4 @@ const OrdersList = ({ currentUser }) => {
 	);
 };
 
-const mapStateToProps = (state) => ({
-	currentUser: selectCurrentUser(state),
-});
-
-export default connect(mapStateToProps, null)(OrdersList);
+export default OrdersList;
