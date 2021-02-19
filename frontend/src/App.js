@@ -22,6 +22,8 @@ import PetBreeding from "./others/breeding";
 import UserProfile from "./components/userprofile/userprofile";
 import NotLoggedIn from "./components/userprofile/notloggedin";
 
+import Homepage from "./home/container/homepage";
+
 import Adoption from "./adoption/container/page";
 
 import Blog from "./blog/container/blog/blog.component";
@@ -100,6 +102,7 @@ class App extends Component {
             component={ProductDetail}
           />
           <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/" component={Homepage} />
           <Route exact path="/hospitals" component={PetHospitals} />
           <Route exact path="/breeding" component={PetBreeding} />
           <Route exact path="/profile" render={() => this.props.currentUser? <UserProfile/>: <NotLoggedIn/>} />
