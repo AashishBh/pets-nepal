@@ -3,6 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import Alert from "react-bootstrap/Alert";
 import { auth, signInWithGoogle } from "../../firebase/firebase.utils";
 import { Link } from "react-router-dom";
 
@@ -13,6 +14,7 @@ class SignIn extends Component {
 		this.state = {
 			email: "",
 			password: "",
+			errorMessage: "",
 		};
 	}
 
@@ -25,7 +27,8 @@ class SignIn extends Component {
 			await auth.signInWithEmailAndPassword(email, password);
 			this.setState({ email: "", password: "" });
 		} catch (error) {
-			console.log(error);
+			this.setState({ errorMessage: error });
+			this.setState({ email: "", password: "" });
 		}
 	};
 
@@ -36,7 +39,7 @@ class SignIn extends Component {
 	};
 
 	render() {
-		const { email, password } = this.state;
+		const { email, password, errorMessage } = this.state;
 		return (
 			<Container>
 				<Jumbotron>
@@ -64,11 +67,21 @@ class SignIn extends Component {
 							onChange={this.handleChange}
 						/>
 					</Form.Group>
+					{errorMessage ? (
+						<Alert variant="danger">
+							{errorMessage.code}
+							<br />
+							{errorMessage.message}
+						</Alert>
+					) : null}
 					<Button variant="outline-primary" type="submit">
 						SIGN IN
 					</Button>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					<Button variant="outline-primary" onClick={signInWithGoogle}>
+					<Button
+						variant="outline-primary"
+						onClick={signInWithGoogle}
+					>
 						SIGN IN WITH GOOGLE
 					</Button>
 					<hr />
