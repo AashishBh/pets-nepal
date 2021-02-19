@@ -41,6 +41,7 @@ const Header = ({ currentUser, productCount }) => (
 				</Nav>
 				<Nav>
 					{currentUser ? (
+						<Nav>
 						<Navbar>
 							{" "}
 							<span onClick={() => auth.signOut()}>
@@ -48,6 +49,10 @@ const Header = ({ currentUser, productCount }) => (
 								SIGN OUT{" "}
 							</span>{" "}
 						</Navbar>
+						<Navbar>
+							<Link to="/profile">My Profile</Link>
+						</Navbar>
+						</Nav>
 					) : (
 						<Navbar>
 							<Link to="/signin">SIGN IN</Link>
