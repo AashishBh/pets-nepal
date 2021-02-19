@@ -19,6 +19,8 @@ import Checkout from "./shop/component/checkout/checkout";
 
 import PetHospitals from "./others/pet-hospitals";
 import PetBreeding from "./others/breeding";
+import UserProfile from "./components/userprofile/userprofile";
+import NotLoggedIn from "./components/userprofile/notloggedin";
 
 import Adoption from "./adoption/container/page";
 
@@ -100,6 +102,7 @@ class App extends Component {
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/hospitals" component={PetHospitals} />
           <Route exact path="/breeding" component={PetBreeding} />
+          <Route exact path="/profile" render={() => this.props.currentUser? <UserProfile/>: <NotLoggedIn/>} />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blog/:id" component={BlogDetail} />
           <Route
