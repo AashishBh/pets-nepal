@@ -21,7 +21,7 @@ const Pet = (props) => {
 
 	const text = String(props.description);
 	return (
-		<Card style={{ width: "18rem" }}>
+		<Card style={{ "display":"inline-block", "width": "23%", "margin": "0px 10px" }}>
 			<Card.Img
 				variant="top"
 				height="250"
@@ -30,7 +30,7 @@ const Pet = (props) => {
 			/>
 			{!props.adopted ? (
 				<div>
-					<Button onClick={handleShow}> Adopt </Button>
+					<Button block onClick={handleShow}> Adopt </Button>
 					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton></Modal.Header>
 						<Modal.Body>
@@ -49,7 +49,7 @@ const Pet = (props) => {
 					</Modal>
 				</div>
 			) : (
-				<Button disabled variant="success">
+				<Button block disabled variant="success">
 					{" "}
 					ADOPTED{" "}
 				</Button>

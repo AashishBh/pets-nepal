@@ -86,9 +86,37 @@ class App extends Component {
               this.props.currentUser ? <Redirect to="/" /> : <SignUp />
             }
           />
-          <Route exact path="/admin" component={AdminPage} />
-          <Route exact path="/admin/addproducts" component={AddProducts} />
-          <Route exact path="/admin/orders" component={OrdersList} />
+          <Route
+            exact
+            path="/admin"
+            render={() =>
+              this.props.currentUser && this.props.currentUser.isAdmin ? (
+                <AdminPage />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
+          <Route
+            path="/admin/addproducts"
+            render={() =>
+              this.props.currentUser && this.props.currentUser.isAdmin ? (
+                <AddProducts />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
+          <Route
+            path="/admin/orders"
+            render={() =>
+              this.props.currentUser && this.props.currentUser.isAdmin ? (
+                <OrdersList />
+              ) : (
+                <Redirect to="/" />
+              )
+            }
+          />
           <Route exact path="/shop" component={Menu} />
           <Route exact path="/shop/:id" component={Category} />
           <Route
@@ -105,7 +133,13 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/hospitals" component={PetHospitals} />
           <Route exact path="/breeding" component={PetBreeding} />
-          <Route exact path="/profile" render={() => this.props.currentUser? <UserProfile/>: <NotLoggedIn/>} />
+          <Route
+            exact
+            path="/profile"
+            render={() =>
+              this.props.currentUser ? <UserProfile /> : <NotLoggedIn />
+            }
+          />
           <Route exact path="/blog" component={Blog} />
           <Route exact path="/blog/:id" component={BlogDetail} />
           <Route
