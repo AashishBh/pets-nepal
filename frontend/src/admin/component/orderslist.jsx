@@ -17,6 +17,7 @@ const OrdersList = () => {
 					Object.assign(doc.data(), { id: doc.id })
 				);
 			});
+			console.log(snapshot);
 			setOrders(snapshot);
 		}
 		fetchData();
@@ -58,8 +59,11 @@ const OrdersList = () => {
 								<strong>Product Price</strong>
 							</td>
 							<td>
+								<strong>Total Price</strong>
+							</td>
+							<td>
 								<strong>
-									Shipping Location  (Street, City, ZIP Code,
+									Shipping Location (Street, City, ZIP Code,
 									Country)
 								</strong>
 							</td>
@@ -87,6 +91,12 @@ const OrdersList = () => {
 										))}
 									</td>
 									<td>
+										Rs. {i.cartItems.reduce(
+											(i, j) => i + j.price * j.quantity,
+											0
+										)}
+									</td>
+									<td>
 										{i.address.billing_address_line1},
 										{i.address.billing_address_city},
 										{i.address.billing_address_zip},
@@ -103,7 +113,14 @@ const OrdersList = () => {
 												&#10004;
 											</p>
 										) : (
-											<OverlayTrigger placement="right" overlay={<Tooltip>Not delivered.</Tooltip>}>
+											<OverlayTrigger
+												placement="right"
+												overlay={
+													<Tooltip>
+														Not delivered.
+													</Tooltip>
+												}
+											>
 												<p
 													onClick={() =>
 														delivered(i.id)
