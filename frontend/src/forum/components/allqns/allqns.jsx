@@ -34,6 +34,7 @@ class AllQns extends Component {
 						body={post.content}
 						author={post.author}
 						id={post.id}
+						date={post.date}
 						clicked={() => this.blogSelectHandler(post.id)}
 					/>
 				))}

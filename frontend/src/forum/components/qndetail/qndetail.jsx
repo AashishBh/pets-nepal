@@ -5,10 +5,13 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import Modal from "react-bootstrap/Modal";
+import Spinner from "react-bootstrap/Spinner";
+import Col from "react-bootstrap/Col";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectCurrentUser } from "../../../redux/user/user-selectors";
 import { firestore } from "../../../firebase/firebase.utils";
+import { toDate } from "../../../utils/unixtodate";
 
 class QuestionDetail extends Component {
 	state = {
@@ -65,78 +68,101 @@ class QuestionDetail extends Component {
 	};
 
 	render() {
+		console.log(this.state.post.date);
 		return (
-			<Container>
-				{this.props.currentUser === null ? null : (
-					<div>
-						{this.props.currentUser.displayName ===
-						this.state.post.author ? (
-							<Button onClick={this.handleShow}> Delete </Button>
-						) : null}
-					</div>
-				)}
-				<Modal show={this.state.showModal} onHide={this.handleClose}>
-					<Modal.Header closeButton></Modal.Header>
-					<Modal.Body>
-						Are you sure you want to delete this blog?
-					</Modal.Body>
-					<Modal.Footer>
-						<Link to="/forum">
-							<Button variant="danger" onClick={this.deleteQn}>
-								Yes
-							</Button>
-						</Link>
-						<Button variant="primary" onClick={this.handleClose}>
-							No
-						</Button>
-					</Modal.Footer>
-				</Modal>
-				<Card>
-					<Card.Header>
-						<h1>{this.state.post.title}</h1>
-					</Card.Header>
-					<Card.Body>
-						<Card.Title style={{ fontSize: "0.8rem" }}>
-							By: {this.state.post.author}
-							<br /> On:{" "}
-							{Date(this.state.post.date).toLocaleString("en-US")}
-						</Card.Title>
-					</Card.Body>
-					<Card.Body>
-						<Card.Text>{this.state.post.content}</Card.Text>
-					</Card.Body>
-				</Card>
-				<br />
-				<br />
-				<Card>
-					<Card.Text>
-						<Form onSubmit={this.handleSubmit}>
-							<Form.Label>
-								<strong>REPLY</strong>
-							</Form.Label>
-
-							<Form.Control
-								type="text"
-								name="comment"
-								placeholder="Enter comment"
-								value={this.state.comment}
-								onChange={this.handleChange}
-							/>
-							{this.props.currentUser ? (
-								<Button variant="primary" type="submit">
-									Submit
-								</Button>
-							) : (
-								<em> Please sign in to join the discussion. </em>
+			<Container style={{ marginTop: "3%" }}>
+				<Col md={{ span: 8, offset: 2 }}>
+					{this.state.post.comments ? (
+						<div>
+							{this.props.currentUser === null ? null : (
+								<div>
+									{this.props.currentUser.displayName ===
+									this.state.post.author ? (
+										<Button
+											variant="danger"
+											style={{
+												marginLeft: "89%",
+												marginBottom: "20px",
+											}}
+											onClick={this.handleShow}
+										>
+											{" "}
+											Delete{" "}
+										</Button>
+									) : null}
+								</div>
 							)}
-						</Form>
-					</Card.Text>
-				</Card>
-				<hr />
-				<h4> Responses: </h4>
-				{this.state.comments.map((i) => (
-					<Alert variant="info">{i}</Alert>
-				))}
+							<Modal
+								show={this.state.showModal}
+								onHide={this.handleClose}
+							>
+								<Modal.Header closeButton></Modal.Header>
+								<Modal.Body>
+									Are you sure you want to delete this blog?
+								</Modal.Body>
+								<Modal.Footer>
+									<Link to="/forum">
+										<Button
+											variant="danger"
+											onClick={this.deleteQn}
+										>
+											Yes
+										</Button>
+									</Link>
+									<Button
+										variant="primary"
+										onClick={this.handleClose}
+									>
+										No
+									</Button>
+								</Modal.Footer>
+							</Modal>
+							<h3>{this.state.post.title}</h3>
+							<Card.Text>{this.state.post.content}</Card.Text>
+
+							<div style={{ fontSize: "0.8rem", color: "gray" }}>
+								By: {this.state.post.author}
+								<br /> On: {toDate(this.state.post.date)}
+							</div>
+							<br />
+							<br />
+							<Form onSubmit={this.handleSubmit}>
+								<Form.Label>Reply:</Form.Label>
+
+								<Form.Control
+									type="text"
+									name="comment"
+									as="textarea"
+									value={this.state.comment}
+									onChange={this.handleChange}
+									required
+								/>
+								<br />
+								{this.props.currentUser ? (
+									<Button variant="primary" type="submit">
+										Submit
+									</Button>
+								) : (
+									<em>
+										{" "}
+										Please sign in to join the discussion.{" "}
+									</em>
+								)}
+							</Form>
+							<hr />
+							<p> {this.state.comments.length} Answers: </p>
+							{this.state.comments.map((i) => (
+								<Alert variant="primary">{i}</Alert>
+							))}
+						</div>
+					) : (
+						<Spinner
+							style={{ marginLeft: "50%", marginTop: "30%" }}
+							animation="border"
+							variant="primary"
+						/>
+					)}
+				</Col>
 			</Container>
 		);
 	}
