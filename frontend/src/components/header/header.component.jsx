@@ -13,13 +13,6 @@ import { ReactComponent as CartIcon } from "../../assets/cart-icon.svg";
 import style from "./header.module.css";
 
 const Header = ({ currentUser, productCount }) => {
-	const userIcon = (
-		<img
-			src="https://img.icons8.com/metro/26/000000/user-male.png"
-			alt="icon"
-			style={{ marginRight: "10%" }}
-		/>
-	);
 	return (
 		<div className={style.text}>
 			<Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
@@ -54,24 +47,32 @@ const Header = ({ currentUser, productCount }) => {
 						</Navbar>
 					</Nav>
 					<Nav>
-						<Navbar>
-							<Link className={style.links} to="/hospitals">
-								Hospitals
-							</Link>
-						</Navbar>
-
-						<Navbar>
-							<Link className={style.links} to="/breeding">
-								Breeding
-							</Link>
-						</Navbar>
+						<NavDropdown
+							title="Services"
+							className={style.dropdownmenu}
+							id="collasible-nav-dropdown dropdown-button-drop-left"
+						>
+							<NavDropdown.Item className={style.dropdown}>
+								<Link
+									style={{ color: "black" }}
+									to="/hospitals"
+								>
+									Hospitals
+								</Link>
+							</NavDropdown.Item>
+							<NavDropdown.Item className={style.dropdown}>
+								<Link style={{ color: "black" }} to="/breeding">
+									Breeding
+								</Link>
+							</NavDropdown.Item>
+						</NavDropdown>
 					</Nav>
 
 					<Nav>
 						{currentUser ? (
 							<Nav>
 								<NavDropdown
-									title={userIcon}
+									title={<i class="fas fa-user-circle"></i>}
 									className={style.dropdownmenu}
 									id="collasible-nav-dropdown dropdown-button-drop-left"
 								>

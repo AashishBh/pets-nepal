@@ -19,7 +19,8 @@ const Subcategory = ({ match }) => {
 			} else if (
 				routeName === "accessories" ||
 				routeName === "livefish" ||
-				routeName === "others"
+				routeName === "others" ||
+				routeName === "catsupplies"
 			) {
 				docId = 2;
 			}

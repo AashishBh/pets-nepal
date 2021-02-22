@@ -72,6 +72,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <br />
         <Switch>
           <Route
             exact
@@ -175,7 +176,7 @@ class App extends Component {
           />
         </Switch>
         <Suspense fallback=<div>Loading...</div>>
-        <Footer/>
+          <Footer />
         </Suspense>
       </div>
     );
