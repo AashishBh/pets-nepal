@@ -1,0 +1,24 @@
+.text {
+	color: white;
+}
+
+.links {
+	color: white;
+}
+
+.links:hover {
+	color: white;
+	text-decoration: none;
+}
+
+.nav-item .dropdownmenu {
+  background: #000000;
+}
+
+.nav-item .dropdownitem {
+  color: #ffffff;
+}
+
+.nav-item .dropdownitem:hover {
+  background: #f0ad4e;
+}

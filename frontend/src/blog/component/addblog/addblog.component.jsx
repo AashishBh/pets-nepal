@@ -28,13 +28,6 @@ class AddBlog extends Component {
 		};
 		const ref = await firestore.collection("blogs");
 		ref.add(data).then(this.setState({submitted: true}))
-		console.log(ref)
-		// axios
-		// 	.post("https://minor-2b2f5.firebaseio.com/blogs.json", data)
-		// 	.then((response) => {
-		// 		// console.log(response);
-		// 		this.setState({ submitted: true });
-		// 	});
 	};
 
 	handleChange = (event) => {

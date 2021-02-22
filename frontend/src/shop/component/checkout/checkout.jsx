@@ -7,11 +7,13 @@ import {
 } from "../../../redux/cart/cart-selectors";
 import Payment from "./payment";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
 const checkout = ({ cartItems, total }) => {
 	// console.log(cartItems);
 	return (
 		<Container>
+		<br/>
 		<h1>CART</h1>
 			{cartItems.length !== 0 ? (
 				<div>
@@ -30,7 +32,7 @@ const checkout = ({ cartItems, total }) => {
 					<Payment total={total} cartItems={cartItems} />
 				</div>
 			) : (
-				<p> Your cart is empty. </p>
+				<Alert variant="primary"> Your cart is empty. </Alert>
 			)}
 		</Container>
 	);

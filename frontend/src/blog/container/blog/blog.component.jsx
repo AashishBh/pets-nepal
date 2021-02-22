@@ -11,11 +11,12 @@ class Blog extends Component {
 	render() {
 		return (
 			<Container>
+			<br/>
 				<Nav className="justify-content-end">
 					{this.props.currentUser ? (
 						<Link to="/add/blog">
 							{" "}
-							<Button variant="outline-primary">
+							<Button variant="outline-dark">
 								New Blog
 							</Button>{" "}
 						</Link>

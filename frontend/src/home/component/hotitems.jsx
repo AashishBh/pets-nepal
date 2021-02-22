@@ -21,10 +21,12 @@ const HotItems = ({ history }) => {
 	}, []);
 
 	return (
-		<Container>
+		<Container >
+		<div className="box" >
+		<div className="subcategories">
 			{hotItems &&
 				hotItems.items.map((i) => (
-					<div style={{"display":"inline-block", "width": "25%"}}>
+					<div style={{"display":"inline-block", width:"22%", margin: '1.5%'}} >
 						<div
 							className="products"
 							onClick={() =>
@@ -48,7 +50,10 @@ const HotItems = ({ history }) => {
 							</div>
 						</div>
 					</div>
-				))}<br/>
+				))}
+			<br />
+			</div>
+			</div>
 		</Container>
 	);
 };

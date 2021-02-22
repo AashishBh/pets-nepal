@@ -10,6 +10,7 @@ import { auth, getUserProfileData } from "./firebase/firebase.utils";
 import SignIn from "./components/signin/signin.component";
 import SignUp from "./components/signup/signup.component";
 import Header from "./components/header/header.component";
+import Footer from "./components/footer/footer";
 
 import Menu from "./shop/component/menu";
 import ProductDetail from "./shop/component/product-detail";
@@ -173,6 +174,9 @@ class App extends Component {
             )}
           />
         </Switch>
+        <Suspense fallback=<div>Loading...</div>>
+        <Footer/>
+        </Suspense>
       </div>
     );
   }

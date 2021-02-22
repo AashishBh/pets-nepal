@@ -1,12 +1,12 @@
 import React from "react";
 import Subcategories from "./subcategories";
-import {withRouter} from "react-router-dom";
+import {Link} from "react-router-dom";
 import "./categories.css";
 
-const categories = ({ title, categories, routeUrl, match, history }) => {
+const categories = ({ title, categories, routeUrl }) => {
 	return (
 		<div>
-			<h1 className="heading" onClick={() => history.push(`/shop/${routeUrl}`)}>{title.toUpperCase()}</h1>
+			<h1 className="heading"><Link style={{"color":"black"}} to={`/shop/${routeUrl}`}>{title.toUpperCase()}</Link></h1>
 			<div className="">
 				{categories.map(({ id, ...otherProps }) => (
 					<Subcategories key={id} routeUrl={routeUrl} {...otherProps} val="4" />
@@ -16,4 +16,4 @@ const categories = ({ title, categories, routeUrl, match, history }) => {
 	);
 };
 
-export default withRouter(categories);
+export default categories;

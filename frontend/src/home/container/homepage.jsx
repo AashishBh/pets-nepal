@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import CarouselComponent from "../component/carousel";
 import Card from "react-bootstrap/Card";
-import CategoryMenu from "../component/categorymenu";
+import Spinner from "react-bootstrap/Spinner";
 import HotItems from "../component/hotitems";
 import { Link } from "react-router-dom";
 import { firestore } from "../../firebase/firebase.utils";
@@ -18,38 +18,58 @@ const HomePage = () => {
 					Object.assign(doc.data(), { id: doc.id })
 				);
 			});
-			setRndmBlog(snapshot[Math.floor(Math.random() * 1)]);
+			const rndm = Math.floor(Math.random() * snapshot.length);
+			setRndmBlog(snapshot[rndm]);
 		}
 		fetchData();
 	}, []);
 
 	return (
-		<Container>
-			<CarouselComponent />
-			<br />
-			<h3>Categories: </h3>
-			<CategoryMenu />
-			<br />
-			<h3> Hot Deals: </h3>
-			<HotItems />
-			<br />
-			<Link to="/shop">
-				{" "}
-				<p>View More</p>{" "}
-			</Link>
-			<br />
-			<h3> Read this blog: </h3>
-			<Card border="info">
-				<Card.Body>
-					<Card.Title>
-						<Link to={`blog/${rndmBlog.id}`}>{rndmBlog.title}</Link>
-					</Card.Title>
-					<Card.Text>
-						{rndmBlog.content && rndmBlog.content.replace(/(<([^>]+)>)/gi, "").slice(0,65)+"..."}
-					</Card.Text>
-				</Card.Body>
-			</Card>
-		</Container>
+		<div>
+			<Container>
+				<br />
+				<CarouselComponent />
+				<br />
+				<h3> LATEST PRODUCTS: </h3>
+				<HotItems />
+				<br />
+				<Link to="/shop">
+					{" "}
+					<p>View More</p>{" "}
+				</Link>
+				<br />
+				{rndmBlog.content && rndmBlog.content? (
+					<div>
+						<h3> {"Also Read".toUpperCase()}: </h3>
+						<Card variant="dark">
+							<Card.Body>
+								<Card.Title>
+									<Link
+										style={{ color: "black" }}
+										to={`blog/${rndmBlog.id}`}
+									>
+										{rndmBlog.title}
+									</Link>
+								</Card.Title>
+								<Card.Text>
+									{rndmBlog.content &&
+										rndmBlog.content
+											.replace(/(<([^>]+)>)/gi, "")
+											.slice(0, 65) + "..."}
+								</Card.Text>
+							</Card.Body>
+						</Card>
+					</div>
+				): <Spinner
+						style={{ marginLeft: "50%", marginTop: "20%" }}
+						animation="border"
+						variant="primary"
+					/>}
+				<br />
+				<br />
+				<br />
+			</Container>
+		</div>
 	);
 };
 

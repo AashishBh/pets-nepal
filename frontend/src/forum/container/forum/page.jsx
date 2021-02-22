@@ -11,11 +11,12 @@ class Forum extends Component {
 	render() {
 		return (
 			<Container>
+			<br/>
 				<Nav className="justify-content-end">
 					{this.props.currentUser ? (
 						<Link to="/ask/question">
 							{" "}
-							<Button variant="outline-primary">
+							<Button variant="outline-dark">
 								Ask question!
 							</Button>{" "}
 						</Link>

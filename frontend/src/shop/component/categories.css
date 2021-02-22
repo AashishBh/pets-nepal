@@ -2,7 +2,7 @@
   margin-top: 30px;
   width: 94%;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   cursor: pointer;
 }

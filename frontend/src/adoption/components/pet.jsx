@@ -30,7 +30,7 @@ const Pet = (props) => {
 			/>
 			{!props.adopted ? (
 				<div>
-					<Button block onClick={handleShow}> Adopt </Button>
+					<Button variant="outline-dark" block onClick={handleShow}> Adopt </Button>
 					<Modal show={show} onHide={handleClose}>
 						<Modal.Header closeButton></Modal.Header>
 						<Modal.Body>

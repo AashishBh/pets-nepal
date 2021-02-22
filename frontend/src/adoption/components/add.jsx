@@ -94,7 +94,7 @@ class AddPet extends Component {
 							onChange={this.onChange}
 						/>
 					</Form.Group>
-					<Button variant="primary" type="submit">
+					<Button variant="outline-dark" type="submit">
 						Submit
 					</Button>
 				</Form>

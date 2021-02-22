@@ -10,12 +10,14 @@ import { Link } from "react-router-dom";
 const Adoption = ({ currentUser }) => {
 	return (
 		<Container>
+			<br />
 			{currentUser ? (
 				<Nav className="justify-content-end">
-					<Button variant="outline-primary">
-						{" "}
-						<Link to="/adoption/add">Add</Link>
-					</Button>
+					<Link
+						to="/adoption/add"
+					>
+						<Button variant="outline-dark"> Add</Button>
+					</Link>
 				</Nav>
 			) : null}
 			<br />
