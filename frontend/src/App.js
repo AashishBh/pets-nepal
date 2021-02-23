@@ -70,7 +70,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{marginLeft:"5%",marginRight:"5%", backgroundColor:"whitesmoke"}}>
         <Header />
         <br />
         <Switch>
