@@ -1,14 +1,14 @@
 .text {
-  color: white;
+	color: white;
 }
 
 .links {
-  color: white;
+	color: white;
 }
 
 .links:hover {
-  color: white;
-  text-decoration: none;
+	color: white;
+	text-decoration: none;
 }
 
 .nav-item .dropdownmenu {

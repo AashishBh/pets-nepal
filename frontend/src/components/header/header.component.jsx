@@ -15,7 +15,7 @@ import style from "./header.module.css";
 const Header = ({ currentUser, productCount }) => {
 	return (
 		<div className={style.text}>
-			<Navbar collapseOnSelect style={{backgroundColor:'rgba(120, 100, 230, 1)'}} variant="dark" expand="lg">
+			<Navbar collapseOnSelect bg="dark" variant="dark" expand="lg">
 				<Navbar.Brand>
 					<Link className={style.links} to="/">
 						{" "}
@@ -40,7 +40,11 @@ const Header = ({ currentUser, productCount }) => {
 								Forum
 							</Link>
 						</Navbar>
-						
+						<Navbar>
+							<Link className={style.links} to="/adoption">
+								Adoption
+							</Link>
+						</Navbar>
 					</Nav>
 					<Nav>
 						<NavDropdown
@@ -61,11 +65,6 @@ const Header = ({ currentUser, productCount }) => {
 								<Link style={{ color: "black" }} to="/breeding">
 									Breeding
 								</Link>
-							</NavDropdown.Item>
-							<NavDropdown.Item className={style.dropdown}>
-									<Link style={{color:'black'}} to="/adoption">
-								Adoption
-							</Link>
 							</NavDropdown.Item>
 						</NavDropdown>
 					</Nav>
