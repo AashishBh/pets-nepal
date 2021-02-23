@@ -44,7 +44,6 @@ class ProductDetail extends React.Component {
 	};
 
 	render() {
-		console.log(this.state.item);
 		const { name, imageUrl, price } = this.state.item;
 		return (
 			<Container>

@@ -4,35 +4,47 @@ import Items from "./items";
 import {
 	selectCartItems,
 	selectCartTotal,
+	selectCartCount,
 } from "../../../redux/cart/cart-selectors";
 import Payment from "./payment";
-import Container from "react-bootstrap/Container";
-import Alert from "react-bootstrap/Alert";
+import { Row, Col, ListGroup, Container, Alert } from "react-bootstrap";
 
-const checkout = ({ cartItems, total }) => {
-	// console.log(cartItems);
+const checkout = ({ cartItems, total, count }) => {
 	return (
 		<Container>
-		<br/>
-		<h1>CART</h1>
+			<br />
+			<h1>CART</h1>
 			{cartItems.length !== 0 ? (
-				<div>
-					<span>Product</span>
-					<span>Quantity</span>
-					<span>Price</span>
-					<span>Remove</span>
-					{cartItems.map((cartItem) => (
-						<Items key={cartItem.id} cartItem={cartItem} />
-					))}
-					<p>
-						<hr />
-					</p>
-					TOTAL: {total}
-					<hr />
-					<Payment total={total} cartItems={cartItems} />
-				</div>
+				<Row>
+					<Col md={8}>
+						{cartItems.map((cartItem) => (
+							<ListGroup>
+								<ListGroup.Item>
+									<Items
+										key={cartItem.id}
+										cartItem={cartItem}
+									/>
+								</ListGroup.Item>
+							</ListGroup>
+						))}
+					</Col>
+					<Col md={4}>
+						<ListGroup variant="flush">
+							<ListGroup.Item>
+								<h2> SUBTOTAL ({count}) ITEMS </h2>
+							</ListGroup.Item>
+							<ListGroup.Item>Rs. {total}</ListGroup.Item>
+							<ListGroup.Item>
+								<Payment total={total} cartItems={cartItems} />
+							</ListGroup.Item>
+						</ListGroup>
+					</Col>
+				</Row>
 			) : (
-				<Alert variant="primary"> Your cart is empty. </Alert>
+				<Alert variant="dark" style={{ width: "50%" }}>
+					{" "}
+					Your cart is empty.{" "}
+				</Alert>
 			)}
 		</Container>
 	);
@@ -41,6 +53,7 @@ const checkout = ({ cartItems, total }) => {
 const mapStateToProps = (state) => ({
 	cartItems: selectCartItems(state),
 	total: selectCartTotal(state),
+	count: selectCartCount(state),
 });
 
 export default connect(mapStateToProps, null)(checkout);

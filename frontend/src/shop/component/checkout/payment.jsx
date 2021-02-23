@@ -62,7 +62,7 @@ const Payment = ({ total, cartItems, currentUser, clearCart }) => {
 					allowRememberMe={false}
 					stripeKey={STRIPE_PUBLISHABLE}
 				>
-					<Button>Pay Now</Button>
+					<Button variant="outline-dark" block>Pay Now</Button>
 				</StripeCheckout>
 			) : (
 				<p> Please sign in to pay and confirm order </p>
