@@ -19,12 +19,10 @@ class AllQns extends Component {
 	};
 
 	blogSelectHandler = (id) => {
-		console.log(id);
 		this.props.history.push("/forum/" + id);
 	};
 
 	render() {
-		console.log(this.state.posts);
 		return (
 			<Fragment>
 				{this.state.posts.map((post) => (

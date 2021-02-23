@@ -30,11 +30,11 @@ class QuestionDetail extends Component {
 		this.setState({ id: id });
 		const docRef = await firestore.collection("questions").doc(id);
 		const doc = await docRef.get();
-		if (!doc.exists) {
-			console.log("No such document!");
-		} else {
-			console.log("Document data:", doc.data());
-		}
+		// if (!doc.exists) {
+		// 	console.log("No such document!");
+		// } else {
+		// 	console.log("Document data:", doc.data());
+		// }
 		this.setState({ post: doc.data() });
 		this.setState({ comments: doc.data().comments });
 	};
@@ -68,7 +68,7 @@ class QuestionDetail extends Component {
 	};
 
 	render() {
-		console.log(this.state.post.date);
+		// console.log(this.state.post.date);
 		return (
 			<Container style={{ marginTop: "3%" }}>
 				<Col md={{ span: 8, offset: 2 }}>
