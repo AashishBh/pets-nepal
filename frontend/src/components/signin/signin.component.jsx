@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
@@ -45,12 +44,8 @@ class SignIn extends Component {
 		return (
 			<Container>
 				<Row>
-					<Col md={{ span: 6, offset: 3 }}>
-					<br/>
-						<Jumbotron>
-							{" "}
-							<h1> SIGN IN </h1>{" "}
-						</Jumbotron>
+					<Col md={{ span: 4, offset: 6 }}>
+						<br /><h1> Sign In </h1><br/>
 						<Form onSubmit={this.handleSubmit}>
 							<Form.Group controlId="formBasicEmail">
 								<Form.Label>Email address</Form.Label>

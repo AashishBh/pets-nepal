@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Jumbotron from "react-bootstrap/Jumbotron";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
@@ -61,12 +60,10 @@ class SignUp extends Component {
 		return (
 			<Container>
 				<Row>
-					<Col md={{ span: 6, offset: 3 }}>
+					<Col md={{ span: 4, offset: 6 }}>
 					<br/>
-						<Jumbotron>
-							{" "}
-							<h1> SIGN UP </h1>{" "}
-						</Jumbotron>
+					<h1> Sign Up </h1>
+					<br/>
 						<Form onSubmit={this.handleSubmit}>
 							<Form.Group controlId="formBasicText">
 								<Form.Label>Display Name</Form.Label>

@@ -42,7 +42,6 @@ class BlogDetail extends Component {
 	render() {
 		return (
 			<Container>
-			<br/>
 				{this.state.post.title ? (
 					<div>
 						{this.props.currentUser === null ? null : (

@@ -70,7 +70,7 @@ class QuestionDetail extends Component {
 	render() {
 		// console.log(this.state.post.date);
 		return (
-			<Container style={{ marginTop: "3%" }}>
+			<Container>
 				<Col md={{ span: 8, offset: 2 }}>
 					{this.state.post.comments ? (
 						<div>
@@ -110,7 +110,7 @@ class QuestionDetail extends Component {
 										</Button>
 									</Link>
 									<Button
-										variant="primary"
+										variant="dark"
 										onClick={this.handleClose}
 									>
 										No
@@ -139,7 +139,7 @@ class QuestionDetail extends Component {
 								/>
 								<br />
 								{this.props.currentUser ? (
-									<Button variant="primary" type="submit">
+									<Button variant="dark" type="submit">
 										Submit
 									</Button>
 								) : (
