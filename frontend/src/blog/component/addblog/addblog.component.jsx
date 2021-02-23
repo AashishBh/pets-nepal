@@ -27,6 +27,7 @@ class AddBlog extends Component {
 			date: Date.now(),
 		};
 		const ref = await firestore.collection("blogs");
+		localStorage.removeItem("localBlogs");
 		ref.add(data).then(this.setState({submitted: true}))
 	};
 

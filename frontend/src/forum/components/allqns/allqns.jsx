@@ -9,13 +9,21 @@ class AllQns extends Component {
 	};
 
 	componentDidMount = async () => {
-		const ref = await firestore.collection("questions");
-		const snapshot = await ref.get().then(function (querySnapshot) {
-			return querySnapshot.docs.map((doc) =>
-				Object.assign(doc.data(), { id: doc.id })
-			);
-		});
-		this.setState({ posts: snapshot });
+		if (localStorage.getItem("localQuestions")) {
+			this.setState({
+				posts: JSON.parse(localStorage.getItem("localQuestions")),
+			});
+		} else {
+			const ref = await firestore.collection("questions");
+			const snapshot = await ref.get().then(function (querySnapshot) {
+				return querySnapshot.docs.map((doc) =>
+					Object.assign(doc.data(), { id: doc.id })
+				);
+			});
+			const localQuestions = JSON.stringify(snapshot);
+			localStorage.setItem("localQuestions", localQuestions);
+			this.setState({ posts: snapshot });
+		}
 	};
 
 	blogSelectHandler = (id) => {

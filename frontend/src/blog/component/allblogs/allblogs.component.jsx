@@ -9,13 +9,21 @@ class AllBlogs extends Component {
 	};
 
 	componentDidMount = async () => {
-		const ref = await firestore.collection("blogs");
-		const snapshot = await ref.get().then(function (querySnapshot) {
-			return querySnapshot.docs.map((doc) =>
-				Object.assign(doc.data(), { id: doc.id })
-			);
-		});
-		this.setState({ posts: snapshot });
+		if (localStorage.getItem("localBlogs")) {
+			this.setState({
+				posts: JSON.parse(localStorage.getItem("localBlogs")),
+			});
+		} else {
+			const ref = await firestore.collection("blogs");
+			const snapshot = await ref.get().then(function (querySnapshot) {
+				return querySnapshot.docs.map((doc) =>
+					Object.assign(doc.data(), { id: doc.id })
+				);
+			});
+			const localBlogs = JSON.stringify(snapshot);
+			localStorage.setItem("localBlogs", localBlogs);
+			this.setState({ posts: snapshot });
+		}
 	};
 
 	blogSelectHandler = (id) => {

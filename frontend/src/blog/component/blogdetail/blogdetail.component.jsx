@@ -34,6 +34,8 @@ class BlogDetail extends Component {
 
 	deleteBlog = async () => {
 		await firestore.collection("blogs").doc(this.state.id).delete();
+		localStorage.removeItem("localBlogs");
+		window.location.reload();
 	};
 
 	handleClose = () => this.setState({ showModal: false });
@@ -50,6 +52,7 @@ class BlogDetail extends Component {
 								this.state.post.author ? (
 									<Button
 										onClick={this.handleShow}
+										variant="danger"
 										style={{
 											marginLeft: "93%",
 											marginBottom: "20px",
@@ -80,7 +83,7 @@ class BlogDetail extends Component {
 									</Button>
 								</Link>
 								<Button
-									variant="primary"
+									variant="dark"
 									onClick={this.handleClose}
 								>
 									No

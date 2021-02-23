@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Products from "../component/products";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import { firestore } from "../../firebase/firebase.utils";
@@ -8,32 +9,39 @@ const Subcategory = ({ match }) => {
 	const [items, setItems] = useState();
 
 	useEffect(() => {
-		async function fetchData() {
-			const { routeName, routeUrl } = match.params;
-
-			let docId = null;
-			if (routeName === "litter" || routeName === "supplies") {
-				docId = 1;
-			} else if (routeName === "food" || routeName === "foodntreats") {
-				docId = 0;
-			} else if (
-				routeName === "accessories" ||
-				routeName === "livefish" ||
-				routeName === "others" ||
-				routeName === "catsupplies"
-			) {
-				docId = 2;
-			}
-			const ref = await firestore.collection(routeUrl);
-			const snapshot = await ref.get().then(function (querySnapshot) {
-				return querySnapshot.docs.map((doc) =>
-					Object.assign(doc.data(), { id: doc.id })
-				);
-			});
-			const data = snapshot[docId];
-			setItems(data);
+		const { routeName, routeUrl } = match.params;
+		let docId = null;
+		if (routeName === "litter" || routeName === "supplies") {
+			docId = 1;
+		} else if (routeName === "food" || routeName === "foodntreats") {
+			docId = 0;
+		} else if (
+			routeName === "accessories" ||
+			routeName === "livefish" ||
+			routeName === "others" ||
+			routeName === "catsupplies"
+		) {
+			docId = 2;
 		}
-		fetchData();
+		if (localStorage.getItem(`local_${routeUrl}_data`)) {
+			setItems(
+				JSON.parse(localStorage.getItem(`local_${routeUrl}_data`))[
+					docId
+				]
+			);
+		} else {
+			async function fetchData() {
+				const ref = await firestore.collection(routeUrl);
+				const snapshot = await ref.get().then(function (querySnapshot) {
+					return querySnapshot.docs.map((doc) =>
+						Object.assign(doc.data(), { id: doc.id })
+					);
+				});
+				const data = snapshot[docId];
+				setItems(data);
+			}
+			fetchData();
+		}
 	}, [match.params]);
 
 	return (
@@ -50,7 +58,15 @@ const Subcategory = ({ match }) => {
 										color: "black",
 									}}
 								>
-									{match.params.routeUrl.toUpperCase()}
+									<Link
+										style={{
+											textDecoration: "none",
+											color: "black",
+										}}
+										to={`/shop/${match.params.routeUrl}`}
+									>
+										{match.params.routeUrl.toUpperCase()}
+									</Link>
 								</span>
 							</Breadcrumb.Item>
 							<Breadcrumb.Item

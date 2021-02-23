@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import "./products.css";
-import {formatName} from "./formatting.utils";
+import {formatName} from "../../utils/formatting.utils";
 
 const products = ({ item, routeName, routeUrl, history }) => {
 	const { name, imageUrl, price } = item;
