@@ -29,7 +29,8 @@ class AskQn extends Component {
 			comments: this.state.comments,
 		};
 		const ref = await firestore.collection("questions");
-		ref.add(data).then(this.setState({submitted: true}))
+		localStorage.removeItem("localQuestions");
+		ref.add(data).then(this.setState({ submitted: true }));
 	};
 
 	handleChange = (event) => {
@@ -42,7 +43,7 @@ class AskQn extends Component {
 		if (this.state.submitted) {
 			redirect = <Redirect to="/forum" />;
 		}
-		if (this.props.currentUser === null){
+		if (this.props.currentUser === null) {
 			redirect = <Redirect to="/forum" />;
 		}
 		return (
@@ -74,7 +75,7 @@ class AskQn extends Component {
 							onChange={this.handleChange}
 						/>
 					</Form.Group>
-					<Button variant="primary" type="submit">
+					<Button variant="outline-dark" type="submit">
 						Submit
 					</Button>
 				</Form>

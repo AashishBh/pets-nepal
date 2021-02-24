@@ -8,7 +8,7 @@ const blogs = (props) => {
 		<Container>
 			<Col md={{ span: 8, offset: 2 }}>
 				<div onClick={props.clicked}>
-					<h3 style={{ cursor: "pointer" }}>{props.title}</h3>
+					<h4 style={{ cursor: "pointer" }}>{props.title}</h4>
 				</div>
 				<small className="text-muted">Posted by {props.author}</small>
 				<br/>

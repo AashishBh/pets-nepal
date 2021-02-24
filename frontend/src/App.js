@@ -17,6 +17,7 @@ import ProductDetail from "./shop/component/product-detail";
 import Category from "./shop/container/category";
 import Subcategory from "./shop/container/subcategory";
 import Checkout from "./shop/component/checkout/checkout";
+import BuyPets from "./shop/component/buypets";
 
 import PetHospitals from "./others/pet-hospitals";
 import PetBreeding from "./others/breeding";
@@ -120,6 +121,7 @@ class App extends Component {
             }
           />
           <Route exact path="/shop" component={Menu} />
+          <Route exact path="/buypets" component={BuyPets} />
           <Route exact path="/shop/:id" component={Category} />
           <Route
             exact

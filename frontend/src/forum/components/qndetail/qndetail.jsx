@@ -41,6 +41,8 @@ class QuestionDetail extends Component {
 
 	deleteQn = async () => {
 		await firestore.collection("questions").doc(this.state.id).delete();
+		localStorage.removeItem("localQuestions");
+		window.location.reload();
 	};
 
 	handleClose = () => this.setState({ showModal: false });

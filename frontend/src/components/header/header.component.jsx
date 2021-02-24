@@ -31,6 +31,11 @@ const Header = ({ currentUser, productCount }) => {
 							</Link>
 						</Navbar>
 						<Navbar>
+							<Link className={style.links} to="/buypets">
+								Buy Pets
+							</Link>
+						</Navbar>
+						<Navbar>
 							<Link className={style.links} to="/blog">
 								Blog
 							</Link>
@@ -40,19 +45,18 @@ const Header = ({ currentUser, productCount }) => {
 								Forum
 							</Link>
 						</Navbar>
-						<Navbar>
-							<Link className={style.links} to="/adoption">
-								Adoption
-							</Link>
-						</Navbar>
 					</Nav>
-					<Nav>
+					<Nav >
 						<NavDropdown
 							title="Services"
 							className={style.dropdownmenu}
 							id="collasible-nav-dropdown dropdown-button-drop-left"
-							
 						>
+							<NavDropdown.Item className={style.dropdown}>
+								<Link style={{ color: "black" }} to="/adoption">
+									Adoption
+								</Link>
+							</NavDropdown.Item>
 							<NavDropdown.Item className={style.dropdown}>
 								<Link
 									style={{ color: "black" }}

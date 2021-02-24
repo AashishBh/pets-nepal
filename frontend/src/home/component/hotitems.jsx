@@ -8,51 +8,65 @@ const HotItems = ({ history }) => {
 	const [hotItems, setHotItems] = useState("");
 
 	useEffect(() => {
-		async function fetchData() {
-			const ref = await firestore.collection("hotitems");
-			const snapshot = await ref.get().then(function (querySnapshot) {
-				return querySnapshot.docs.map((doc) =>
-					Object.assign(doc.data(), { id: doc.id })
-				);
-			});
-			setHotItems(snapshot[0]);
+		if (localStorage.getItem("localHotItems")) {
+			setHotItems(JSON.parse(localStorage.getItem("localHotItems")));
+		} else {
+			async function fetchData() {
+				const ref = await firestore.collection("hotitems");
+				const snapshot = await ref.get().then(function (querySnapshot) {
+					return querySnapshot.docs.map((doc) =>
+						Object.assign(doc.data(), { id: doc.id })
+					);
+				});
+				const localHotItems = JSON.stringify(snapshot[0]);
+				localStorage.setItem("localHotItems", localHotItems);
+				setHotItems(snapshot[0]);
+			}
+			fetchData();
 		}
-		fetchData();
 	}, []);
 
 	return (
-		<Container >
-		<div className="box" >
-		<div className="subcategories">
-			{hotItems &&
-				hotItems.items.map((i) => (
-					<div style={{"display":"inline-block", width:"22%", margin: '1.5%'}} >
-						<div
-							className="products"
-							onClick={() =>
-								history.push(
-									`/product/${i.routeUrl}${i.routeName}${i.id}`
-								)
-							}
-						>
+		<Container>
+			<div className="box">
+				<div className="subcategories">
+					{hotItems &&
+						hotItems.items.map((i) => (
 							<div
-								className="image"
 								style={{
-									backgroundImage: `url(${i.imageUrl})`,
+									display: "inline-block",
+									width: "22%",
+									margin: "1.5%",
 								}}
-							/>
-							<div className="product-detail">
-								<span className="name">
-									{i.name.toUpperCase()}
-								</span>
-								<br />
-								<span className="price">Rs. {i.price}</span>
+							>
+								<div
+									className="products"
+									onClick={() =>
+										history.push(
+											`/product/${i.routeUrl}${i.routeName}${i.id}`
+										)
+									}
+								>
+									<div
+										className="image"
+										style={{
+											backgroundImage: `url(${i.imageUrl})`,
+										}}
+									/>
+									<div className="product-detail">
+										<span className="name">
+											{i.name.toUpperCase()}
+										</span>
+										<br />
+										<span className="price">
+											Rs. {i.price}
+										</span>
+									</div>
+								</div>
 							</div>
-						</div>
-					</div>
-				))}
-			<br />
-			</div>
+						))}
+					<br />
+				</div>
 			</div>
 		</Container>
 	);
