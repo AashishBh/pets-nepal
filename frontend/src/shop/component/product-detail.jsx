@@ -91,7 +91,7 @@ class ProductDetail extends React.Component {
 									<ListGroup.Item>
 										<Rating
 											value={Math.floor(
-												Math.random() * 2 + 3
+												Math.random() * 3 + 3
 											)}
 										/>
 									</ListGroup.Item>
