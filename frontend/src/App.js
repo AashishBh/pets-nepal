@@ -7,6 +7,8 @@ import { setCurrentUser } from "./redux/user/user-actions";
 
 import { auth, getUserProfileData } from "./firebase/firebase.utils";
 
+import ScrollToTop from "./utils/scrolltotop";
+
 import SignIn from "./components/signin/signin.component";
 import SignUp from "./components/signup/signup.component";
 import Header from "./components/header/header.component";
@@ -18,6 +20,8 @@ import Category from "./shop/container/category";
 import Subcategory from "./shop/container/subcategory";
 import Checkout from "./shop/component/checkout/checkout";
 import BuyPets from "./shop/component/buypets";
+
+import LostNFound from "./lostnfound/container/lostnfound";
 
 import PetHospitals from "./others/pet-hospitals";
 import PetBreeding from "./others/breeding";
@@ -73,6 +77,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <ScrollToTop />
         <br />
         <Switch>
           <Route
@@ -167,6 +172,7 @@ class App extends Component {
           />
           <Route exact path="/forum" component={Forum} />
           <Route exact path="/forum/:id" component={QuestionDetail} />
+          <Route path="/lostnfound" component={LostNFound} />
           <Route
             exact
             path="/ask/question"
