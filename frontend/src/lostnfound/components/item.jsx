@@ -36,14 +36,13 @@ const Item = ({
 	};
 
 	return (
-		<Card style={{ width: "14rem", margin: "20px" }}>
+		<Card style={{ width: "20rem", margin: "20px" }}>
 			<ListGroup variant="flush">
 				<ListGroup.Item>
 					<Image
 						src={imageUrl}
 						style={{
-							height: "200px",
-							width: "200px",
+							width: "18rem",
 						}}
 					/>
 				</ListGroup.Item>
@@ -61,16 +60,26 @@ const Item = ({
 						</span>
 					</ListGroup.Item>
 				) : null}
-				{parseInt(reward) !== 0 ? (
-					<ListGroup.Item>Reward: Rs.{reward}</ListGroup.Item>
+				{name ? (
+					<div>
+						{parseInt(reward) !== 0 ? (
+							<ListGroup.Item>Reward: Rs.{reward}</ListGroup.Item>
+						) : null}
+					</div>
 				) : null}
+
 				<ListGroup.Item>
 					{renderHTML(String(description).slice(0, 80))}
-					<p onClick={handleShow}> View More </p>
+					<p onClick={handleShow}>
+						{" "}
+						<u style={{ cursor: "pointer" }}>View More</u>{" "}
+					</p>
 				</ListGroup.Item>
 			</ListGroup>
 			<Modal show={show} onHide={handleClose}>
-				<Modal.Header closeButton><h4>Description</h4></Modal.Header>
+				<Modal.Header closeButton>
+					<h4>Description</h4>
+				</Modal.Header>
 				<Modal.Body>{renderHTML(String(description))}</Modal.Body>
 			</Modal>
 		</Card>
