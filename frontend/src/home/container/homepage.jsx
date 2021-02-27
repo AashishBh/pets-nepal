@@ -11,17 +11,23 @@ const HomePage = () => {
 	const [rndmBlog, setRndmBlog] = useState("");
 
 	useEffect(() => {
-		async function fetchData() {
-			const ref = await firestore.collection("blogs");
-			const snapshot = await ref.get().then(function (querySnapshot) {
-				return querySnapshot.docs.map((doc) =>
-					Object.assign(doc.data(), { id: doc.id })
-				);
-			});
-			const rndm = Math.floor(Math.random() * snapshot.length);
-			setRndmBlog(snapshot[rndm]);
+		if (localStorage.getItem("localBlogs")) {
+			const localBlogs = JSON.parse(localStorage.getItem("localBlogs"));
+			const rndm = Math.floor(Math.random() * localBlogs.length);
+			setRndmBlog(localBlogs[rndm]);
+		} else {
+			async function fetchData() {
+				const ref = await firestore.collection("blogs");
+				const snapshot = await ref.get().then(function (querySnapshot) {
+					return querySnapshot.docs.map((doc) =>
+						Object.assign(doc.data(), { id: doc.id })
+					);
+				});
+				const rndm = Math.floor(Math.random() * snapshot.length);
+				setRndmBlog(snapshot[rndm]);
+			}
+			fetchData();
 		}
-		fetchData();
 	}, []);
 
 	return (
@@ -38,7 +44,7 @@ const HomePage = () => {
 					<p>View More</p>{" "}
 				</Link>
 				<br />
-				{rndmBlog.content && rndmBlog.content? (
+				{rndmBlog.content && rndmBlog.content ? (
 					<div>
 						<h3> {"Also Read".toUpperCase()}: </h3>
 						<Card variant="dark">
@@ -60,11 +66,13 @@ const HomePage = () => {
 							</Card.Body>
 						</Card>
 					</div>
-				): <Spinner
+				) : (
+					<Spinner
 						style={{ marginLeft: "50%", marginTop: "20%" }}
 						animation="border"
 						variant="primary"
-					/>}
+					/>
+				)}
 				<br />
 				<br />
 				<br />
