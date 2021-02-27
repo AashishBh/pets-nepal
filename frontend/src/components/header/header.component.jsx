@@ -46,7 +46,14 @@ const Header = ({ currentUser, productCount }) => {
 							</Link>
 						</Navbar>
 					</Nav>
-					<Nav >
+					<Nav>
+						<Navbar>
+							<Link className={style.links} to="/lostnfound">
+								Lost & Found
+							</Link>
+						</Navbar>
+					</Nav>
+					<Nav>
 						<NavDropdown
 							title="Services"
 							className={style.dropdownmenu}
