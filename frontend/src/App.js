@@ -75,7 +75,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="App" style={{marginLeft:"2.5%",marginRight:"2.5%"}}>
         <Header />
         <ScrollToTop />
         <br />

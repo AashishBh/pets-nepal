@@ -4,7 +4,7 @@ import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
 
 const CarouselComponent = () => (
-	<Carousel pause="hover" className="bg-dark">
+	<Carousel pause="hover" className="bg-dark" style={{ zIndex:"0" }}>
 		<Carousel.Item>
 			<Image src="https://i.ibb.co/bW7ywbK/5283719.jpg" fluid />
 			<Carousel.Caption className="carousel-caption">

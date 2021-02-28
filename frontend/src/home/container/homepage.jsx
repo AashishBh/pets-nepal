@@ -33,7 +33,7 @@ const HomePage = () => {
 	return (
 		<div>
 			<Container>
-				<CarouselComponent />
+				<CarouselComponent/>
 				<br />
 				<h3> LATEST PRODUCTS: </h3>
 				<HotItems />
