@@ -94,11 +94,12 @@ const Header = ({ currentUser, productCount }) => {
 						</Navbar>
 								<Navbar>
 							<Link className={style.links} to="/lostnfound">
-								Lost&Found
+								Lost & Found
 							</Link>
 						</Navbar>
 					</Nav>
-					<Nav >
+
+					<Nav>
 						<NavDropdown
 							title="Services"
 							className={style.dropdownmenu}

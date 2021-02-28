@@ -35,7 +35,7 @@ const HotItems = ({ history }) => {
 							<div
 								style={{
 									display: "inline-block",
-									width: "22%",
+									width: "17%",
 									margin: "1.5%",
 								}}
 							>
