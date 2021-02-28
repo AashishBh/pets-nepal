@@ -40,7 +40,7 @@ const GetPet = () => {
 
 	return (
 		<Container>
-			<h1> Get a Pet </h1>
+			
 			<div className="box">
 				<div className="subcategories">
 					{dogs &&

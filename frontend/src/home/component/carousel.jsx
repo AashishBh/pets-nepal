@@ -13,7 +13,7 @@ const CarouselComponent = () => (
 				<div className="row align-items-center fill_height">
 					<div className="col">
 						<div className={style.mainSliderContent}>
-							<h6 style={{color:'white'}}>Spring / Summer Collection 20211</h6>
+							<h6 style={{color:'white'}}>We find the best for your PET</h6>
 							<h1 style={{color:'white'}}>Get up to 30% Off New Arrivals</h1>
 							<div className={style.redButton}><a href="/shop">shop now</a></div>
 						</div>

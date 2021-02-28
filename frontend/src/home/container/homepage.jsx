@@ -4,7 +4,8 @@ import CarouselComponent from "../component/carousel";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
 import HotItems from "../component/hotitems";
-import GetPet from "../component/getpet"
+import GetPet from "../component/getpet";
+import FindMe from "../component/findme";
 import { Link } from "react-router-dom";
 import { firestore } from "../../firebase/firebase.utils";
 
@@ -35,10 +36,14 @@ const HomePage = () => {
 		<div>
 			<CarouselComponent />
 			<Container>
-				<h3> LATEST PRODUCTS: </h3>
+				<h3> LATEST PRODUCTS </h3>
 				<HotItems />
 				<br />
+					<h3> GET A PET</h3>
 				<GetPet/>
+				<br />
+				<h3> HELP FIND ME</h3>
+					<FindMe	/>
 				<br />
 
 				{rndmBlog.content && rndmBlog.content ? (
