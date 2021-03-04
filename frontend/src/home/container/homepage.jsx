@@ -4,6 +4,7 @@ import CarouselComponent from "../component/carousel";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
 import HotItems from "../component/hotitems";
+import ContactUs from "../component/contactus"
 import { Link } from "react-router-dom";
 import { firestore } from "../../firebase/firebase.utils";
 
@@ -69,6 +70,8 @@ const HomePage = () => {
 					/>
 				)}
 				<br />
+				<br />
+				<ContactUs />
 			</Container>
 		</div>
 	);
