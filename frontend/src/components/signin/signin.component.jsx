@@ -43,10 +43,21 @@ class SignIn extends Component {
 		const { email, password, errorMessage } = this.state;
 		return (
 			<Container>
-				<img src={require('../../assets/logo.png')} style={{height:"300px",width:"550px",position:"absolute",marginTop:"50px"}}/>
+				<img
+					src={require("../../assets/logo.png")}
+					alt="Pets Nepal Graphic"
+					style={{
+						height: "300px",
+						width: "550px",
+						position: "absolute",
+						marginTop: "50px",
+					}}
+				/>
 				<Row>
 					<Col md={{ span: 4, offset: 6 }}>
-						<br /><h1> Sign In </h1><br/>
+						<br />
+						<h1> Sign In </h1>
+						<br />
 						<Form onSubmit={this.handleSubmit}>
 							<Form.Group controlId="formBasicEmail">
 								<Form.Label>Email address</Form.Label>

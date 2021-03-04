@@ -33,6 +33,7 @@ const HotItems = ({ history }) => {
 					{hotItems &&
 						hotItems.items.map((i) => (
 							<div
+								key={i.id}
 								style={{
 									display: "inline-block",
 									width: "17%",

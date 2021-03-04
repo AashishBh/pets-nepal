@@ -14,7 +14,7 @@ const CarouselComponent = () => (
 					<div className="col">
 						<div className={style.mainSliderContent}>
 							<h1 style={{color:'white'}}>We find the best for your PET</h1>
-							<div className={style.redButton}><a href="/shop">shop now</a></div>
+							<div className={style.redButton}><Link to="/shop">SHOP NOW </Link></div>
 						</div>
 					</div>
 				</div>

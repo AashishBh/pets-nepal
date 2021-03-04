@@ -4,8 +4,6 @@ import CarouselComponent from "../component/carousel";
 import Card from "react-bootstrap/Card";
 import Spinner from "react-bootstrap/Spinner";
 import HotItems from "../component/hotitems";
-import GetPet from "../component/getpet";
-import FindMe from "../component/findme";
 import { Link } from "react-router-dom";
 import { firestore } from "../../firebase/firebase.utils";
 
@@ -39,11 +37,6 @@ const HomePage = () => {
 				<h3> LATEST PRODUCTS </h3>
 				<HotItems />
 				<br />
-					<h3> GET A PET</h3>
-				<GetPet/>
-				<br />
-				<h3> HELP FIND ME</h3>
-					<FindMe	/>
 				<br />
 
 				{rndmBlog.content && rndmBlog.content ? (
@@ -51,38 +44,6 @@ const HomePage = () => {
 						<h3> {"Also Read".toUpperCase()}: </h3>
 						<Card variant="dark">
 							<Card.Body>
-								<Card.Title>
-									<Link
-										style={{ color: "black" }}
-										to={`blog/${rndmBlog.id}`}
-									>
-										{rndmBlog.title}
-									</Link>
-								</Card.Title>
-								<Card.Text>
-									{rndmBlog.content &&
-										rndmBlog.content
-											.replace(/(<([^>]+)>)/gi, "")
-											.slice(0, 65) + "..."}
-								</Card.Text>
-							</Card.Body>
-								<Card.Body>
-								<Card.Title>
-									<Link
-										style={{ color: "black" }}
-										to={`blog/${rndmBlog.id}`}
-									>
-										{rndmBlog.title}
-									</Link>
-								</Card.Title>
-								<Card.Text>
-									{rndmBlog.content &&
-										rndmBlog.content
-											.replace(/(<([^>]+)>)/gi, "")
-											.slice(0, 65) + "..."}
-								</Card.Text>
-							</Card.Body>
-								<Card.Body>
 								<Card.Title>
 									<Link
 										style={{ color: "black" }}
@@ -107,8 +68,6 @@ const HomePage = () => {
 						variant="primary"
 					/>
 				)}
-				<br />
-				<br />
 				<br />
 			</Container>
 		</div>

@@ -90,6 +90,12 @@
   left: 200px;
   top: -0px;
 }
+.userIcon ul {
+  margin-left: -10px;
+}
+.userIcon ul li {
+  width: 120px;
+}
 
 .cartIcon {
   /* margin-left: 5px; */
