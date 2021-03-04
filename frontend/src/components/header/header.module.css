@@ -44,8 +44,17 @@
   position: relative;
 }
 .shop {
-  padding: 10px 0px;
+  /* padding: 10px 0px; */
   display: block;
+  margin-top: 9px;
+}
+
+.userIcon {
+  padding-right: 10px;
+}
+.userIcon:hover {
+  background: rgb(180, 179, 179);
+  fill: white;
 }
 
 .menu li a {
@@ -80,4 +89,13 @@
 .menu li ul ul {
   left: 200px;
   top: -0px;
+}
+
+.cartIcon {
+  /* margin-left: 5px; */
+  fill: black;
+}
+
+.cartIcon:hover {
+  fill: white;
 }
