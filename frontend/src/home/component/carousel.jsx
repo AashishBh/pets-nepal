@@ -15,7 +15,7 @@ const CarouselComponent = () => (
 						<div className={style.mainSliderContent}>
 							<h6 style={{color:'white'}}>We find the best for your PET</h6>
 							<h1 style={{color:'white'}}>Get up to 30% Off New Arrivals</h1>
-							<div className={style.redButton}><a href="/shop">shop now</a></div>
+							<div className={style.redButton}><Link to="shop">shop now</Link></div>
 						</div>
 					</div>
 				</div>

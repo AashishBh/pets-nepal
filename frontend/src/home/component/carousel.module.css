@@ -5,14 +5,14 @@
 }
 .mainSlider {
   width: 100%;
-  height: 800px;
+  height: 650px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   background-image: url("../../assets/banner.jpg");
 }
 .mainSliderContent {
-  margin-top: 455px;
+  margin-top: 300px;
   width: 60%;
 }
 .mainSliderContent h6 {

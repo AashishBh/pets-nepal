@@ -9,9 +9,9 @@ class AllQns extends Component {
 	};
 
 	componentDidMount = async () => {
-		if (localStorage.getItem("localQuestions")) {
+		if (sessionStorage.getItem("localQuestions")) {
 			this.setState({
-				posts: JSON.parse(localStorage.getItem("localQuestions")),
+				posts: JSON.parse(sessionStorage.getItem("localQuestions")),
 			});
 		} else {
 			const ref = await firestore.collection("questions");
@@ -21,7 +21,7 @@ class AllQns extends Component {
 				);
 			});
 			const localQuestions = JSON.stringify(snapshot);
-			localStorage.setItem("localQuestions", localQuestions);
+			sessionStorage.setItem("localQuestions", localQuestions);
 			this.setState({ posts: snapshot });
 		}
 	};

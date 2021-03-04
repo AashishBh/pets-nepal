@@ -43,7 +43,6 @@ class SignIn extends Component {
 		const { email, password, errorMessage } = this.state;
 		return (
 			<Container>
-				<img src={require('../../assets/logo.png')} style={{height:"300px",width:"550px",position:"absolute",marginTop:"50px"}}/>
 				<Row>
 					<Col md={{ span: 4, offset: 6 }}>
 						<br /><h1> Sign In </h1><br/>

@@ -1,35 +1,36 @@
 .text {
-  color: black;
-  background-color: whitesmoke;
-  border-bottom: 3px solid rgb(207, 207, 207);
-  position: sticky;
+  /*color: black;*/
+  /*background-color: whitesmoke;*/
+  /*border-bottom: 3px solid rgb(207, 207, 207);*/
+  /*position: sticky;*/
   top: 0px;
 
   z-index: 1;
 }
 
 .links {
-  color: black;
-  padding: 10px 10px;
+  color: white;
+  padding: 5px;
   display: block;
 }
 
 .links:hover {
-  color: white;
-  background-color: rgb(180, 179, 179);
+  color: black;
+  /*background-color: rgb(180, 179, 179);*/
   text-decoration: none;
 }
 
-.nav-item .dropdownmenu {
-  background: white;
-}
-
-.nav-item .dropdownitem {
+.dropdownmenu {
+  /*background: white;*/
   color: white;
 }
 
+.nav-item .dropdownitem {
+  /*color: white;*/
+}
+
 .menu {
-  background: transparent;
+  /*background: transparent;*/
   z-index: 3;
 }
 .menu ul {
@@ -45,11 +46,12 @@
 }
 .shop {
   padding: 10px 0px;
-  display: block;
+  /*color: black;*/
+  /*display: block;*/
 }
 
 .menu li a {
-  color: black;
+  color: white;
   text-decoration: none;
   padding: 0px 20px;
   border-left: 1px solid black;
@@ -58,7 +60,7 @@
 
 .menu li a:hover {
   background: rgb(180, 179, 179);
-  color: white;
+  color: black;
 }
 
 .menu li ul {
@@ -67,7 +69,7 @@
 
   display: none;
   position: absolute;
-  background: whitesmoke;
+  background: #343a40;
 }
 .menu li:hover > ul {
   display: block;

@@ -35,6 +35,8 @@ const Footer = () => {
 								</li>
 								<li>
 									<Link to="/adoption">Adoption</Link>
+								</li><li>
+									<Link to="/lostnfound">Lost & Found</Link>
 								</li>
 							</ul>
 						</div>
