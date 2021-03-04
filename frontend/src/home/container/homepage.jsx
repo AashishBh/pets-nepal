@@ -39,12 +39,50 @@ const HomePage = () => {
 				<h3> LATEST PRODUCTS </h3>
 				<HotItems />
 				<br />
+					<h3> GET A PET</h3>
+				<GetPet/>
+				<br />
+				<h3> HELP FIND ME</h3>
+					<FindMe	/>
+				<br />
 
 				{rndmBlog.content && rndmBlog.content ? (
 					<div>
 						<h3> {"Also Read".toUpperCase()}: </h3>
 						<Card variant="dark">
 							<Card.Body>
+								<Card.Title>
+									<Link
+										style={{ color: "black" }}
+										to={`blog/${rndmBlog.id}`}
+									>
+										{rndmBlog.title}
+									</Link>
+								</Card.Title>
+								<Card.Text>
+									{rndmBlog.content &&
+										rndmBlog.content
+											.replace(/(<([^>]+)>)/gi, "")
+											.slice(0, 65) + "..."}
+								</Card.Text>
+							</Card.Body>
+								<Card.Body>
+								<Card.Title>
+									<Link
+										style={{ color: "black" }}
+										to={`blog/${rndmBlog.id}`}
+									>
+										{rndmBlog.title}
+									</Link>
+								</Card.Title>
+								<Card.Text>
+									{rndmBlog.content &&
+										rndmBlog.content
+											.replace(/(<([^>]+)>)/gi, "")
+											.slice(0, 65) + "..."}
+								</Card.Text>
+							</Card.Body>
+								<Card.Body>
 								<Card.Title>
 									<Link
 										style={{ color: "black" }}
