@@ -17,7 +17,7 @@
 }
 .price {
   font-weight: bolder;
-  color: #007bff;
+  color: #fe4c50;
 }
 
 .image {
@@ -29,7 +29,7 @@
   margin-bottom: 5px;
 }
 
-.productx{
+.productx {
   height: 500px;
   position: relative;
   width: 25vw;
@@ -48,7 +48,7 @@
   border: 2px solid black;
 }
 
-.imagex:hover{
+.imagex:hover {
   transform: scale(1.25);
 }
 
@@ -59,7 +59,7 @@
   height: 30px;
 }
 
-.product-detailx{
+.product-detailx {
   position: absolute;
   left: 120%;
   top: 30%;

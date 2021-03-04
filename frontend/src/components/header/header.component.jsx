@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Badge from "react-bootstrap/Badge";
@@ -10,9 +10,19 @@ import { auth } from "../../firebase/firebase.utils";
 import { selectCurrentUser } from "../../redux/user/user-selectors";
 import { selectCartCount } from "../../redux/cart/cart-selectors";
 import { ReactComponent as CartIcon } from "../../assets/cart-icon.svg";
+import Modal from "react-bootstrap/Modal";
 import style from "./header.module.css";
 
 const Header = ({ currentUser, productCount }) => {
+	const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
+	const handleLogout = () => {
+		setShow(false);
+		auth.signOut();
+	}
+	
 	return (
 		<div className={style.text}>
 				<Navbar collapseOnSelect  expand="lg">
@@ -97,77 +107,110 @@ const Header = ({ currentUser, productCount }) => {
 								Lost & Found
 							</Link>
 						</Navbar>
-					</Nav>
+				
 
-					<Nav>
-						<NavDropdown
-							title="Services"
-							className={style.dropdownmenu}
-							id="collasible-nav-dropdown dropdown-button-drop-left"
-						>
-							<NavDropdown.Item className={style.dropdown}>
-								<Link style={{ color: "black" }} to="/adoption">
-									Adoption
-								</Link>
-							</NavDropdown.Item>
-							<NavDropdown.Item className={style.dropdown}>
-								<Link
-									style={{ color: "black" }}
-									to="/hospitals"
-								>
-									Hospitals
-								</Link>
-							</NavDropdown.Item>
-							<NavDropdown.Item className={style.dropdown}>
-								<Link style={{ color: "black" }} to="/breeding">
-									Breeding
-								</Link>
-							</NavDropdown.Item>
-						</NavDropdown>
-					</Nav>
+		</Nav>
 
-					<Nav>
+							<nav style={{marginBottom:0}} className={style.menu}>
+
+								<ul className={style.clearfix}>
+
+								<li  className={style.shop} ><Link to="/">Services</Link>
+								<ul>
+											<li><Link to="/adoption">Adoption</Link>
+											</li>
+																		
+											<li><Link to="/hospitals">Hospitals</Link>
+											</li>
+											
+											
+											<li><Link to="/breeding">Breeding</Link>
+											</li>				
+																		
+								</ul>
+														</li>
+						</ul>
+						</nav>
+
+
+					
+
+							{/* <nav style={{marginBottom:10}} className={style.menu}>
+
+								<ul style={{marginBottom:10}} className={style.clearfix}>
+
+							<li className={style.shop} >
+								<i class="fas fa-user-circle"></i>
+								<Link to="/">Services</Link>
+								<ul>
+											<li><Link to="/adoption">Adoption</Link>
+											</li>
+																		
+											<li><Link to="/hospitals">Hospitals</Link>
+											</li>
+											
+											
+											<li><Link to="/breeding">Breeding</Link>
+											</li>				
+																		
+								</ul>
+														</li>
+						</ul>
+						</nav> */}
+
+			<nav style={{marginBottom:0}} className={style.menu}>
 						{currentUser ? (
-							<Nav>
-								<NavDropdown
-									title={<i class="fas fa-user-circle"></i>}
-									className={style.dropdownmenu}
-									id="collasible-nav-dropdown dropdown-button-drop-left"
-								>
-									<NavDropdown.Item>
-										<Link
-											style={{ color: "black" }}
-											to="/profile"
-										>
-											My Profile
-										</Link>
-									</NavDropdown.Item>
-									<NavDropdown.Item
-										className={style.dropdown}
-									>
-										<span onClick={() => auth.signOut()}>
+							<ul style={{marginBottom:0}} className={style.clearfix}>
+
+								<li style={{paddingLeft:10}} className={style.userIcon} >
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M12 2c2.757 0 5 2.243 5 5.001 0 2.756-2.243 5-5 5s-5-2.244-5-5c0-2.758 2.243-5.001 5-5.001zm0-2c-3.866 0-7 3.134-7 7.001 0 3.865 3.134 7 7 7s7-3.135 7-7c0-3.867-3.134-7.001-7-7.001zm6.369 13.353c-.497.498-1.057.931-1.658 1.302 2.872 1.874 4.378 5.083 4.972 7.346h-19.387c.572-2.29 2.058-5.503 4.973-7.358-.603-.374-1.162-.811-1.658-1.312-4.258 3.072-5.611 8.506-5.611 10.669h24c0-2.142-1.44-7.557-5.631-10.647z"/></svg>
+								{/* <Link to="/">Services</Link> */}
+								<ul>
+											<li><Link to="/profile">My Profile</Link>
+											</li>
+										<li>
+									<Link onClick={handleShow} >
 											{" "}
 											SIGN OUT{" "}
-										</span>{" "}
-									</NavDropdown.Item>
-								</NavDropdown>
-							</Nav>
+											</Link>{" "}
+											<Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Sign Out</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to sign out?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleLogout}>
+            Yes
+          </Button>
+          <Button variant="secondary" onClick={handleClose}>
+            No
+          </Button>
+        </Modal.Footer>
+      </Modal>
+										</li>					
+											
+										
+																		
+								</ul>
+														</li>
+						</ul>
+			
 						) : (
-							<Button variant="outline-dark">
-								<Link className={style.links} to="/signin">
+								<Link style={{marginTop:9}} className={style.links} to="/signin">
 									SIGN IN
 								</Link>
-							</Button>
+							
 						)}
-					</Nav>
-					<Navbar>
+					</nav>
+					<Navbar style={{paddingTop:9}}>
 						<Link className={style.links} to="/checkout">
-							<CartIcon
-								style={{ fill: "#000", marginLeft: "20px" }}
+							<CartIcon className={style.cartIcon}
 							/>
 							<Badge variant="dark">{productCount}</Badge>
 						</Link>
-					</Navbar>
+						</Navbar>
+					
+
 				</Navbar.Collapse>
 			</Navbar>
 		</div>
