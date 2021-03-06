@@ -46,6 +46,7 @@ const BuyPets = () => {
 					{dogs &&
 						dogs.items.map((i) => (
 							<div
+								key={i.id}
 								style={{
 									display: "inline-block",
 									width: "17%",
@@ -53,7 +54,6 @@ const BuyPets = () => {
 								}}
 							>
 								<Pets
-									key={i.id}
 									type="dogs"
 									id={i.id}
 									name={i.name}
@@ -70,6 +70,7 @@ const BuyPets = () => {
 					{cats &&
 						cats.items.map((i) => (
 							<div
+								key={i.id}
 								style={{
 									display: "inline-block",
 									width: "17%",
@@ -77,7 +78,6 @@ const BuyPets = () => {
 								}}
 							>
 								<Pets
-									key={i.id}
 									type="cats"
 									id={i.id}
 									name={i.name}

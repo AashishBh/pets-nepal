@@ -33,7 +33,7 @@ const Found = ({ currentUser }) => {
 			) : null}
 			{foundData &&
 				foundData.map(({ description, author, ...otherProps }) => (
-					<div style={{ display: "inline-block" }}>
+					<div key={Math.random(200)} style={{ display: "inline-block" }}>
 						<Item
 							description={description}
 							type={null}

@@ -90,14 +90,15 @@ const Header = ({ currentUser, productCount }) => {
 														Food
 													</Link>
 												</li>
-												<li>
-													<Link to="/shop/fish/livefish">
-														Live Fish
-													</Link>
-												</li>
+
 												<li>
 													<Link to="/shop/fish/supplies">
 														Supplies
+													</Link>
+												</li>
+												<li>
+													<Link to="/shop/fish/livefish">
+														Live Fish
 													</Link>
 												</li>
 											</ul>
@@ -172,30 +173,6 @@ const Header = ({ currentUser, productCount }) => {
 							</li>
 						</ul>
 					</nav>
-
-					{/* <nav style={{marginBottom:10}} className={style.menu}>
-
-								<ul style={{marginBottom:10}} className={style.clearfix}>
-
-							<li className={style.shop} >
-								<i class="fas fa-user-circle"></i>
-								<Link to="/">Services</Link>
-								<ul>
-											<li><Link to="/adoption">Adoption</Link>
-											</li>
-																		
-											<li><Link to="/hospitals">Hospitals</Link>
-											</li>
-											
-											
-											<li><Link to="/breeding">Breeding</Link>
-											</li>				
-																		
-								</ul>
-														</li>
-						</ul>
-						</nav> */}
-
 					<nav style={{ marginBottom: 0 }} className={style.menu}>
 						{currentUser ? (
 							<ul
@@ -216,12 +193,19 @@ const Header = ({ currentUser, productCount }) => {
 									</svg>
 									<ul className={style.throwRight}>
 										<li>
-											<Link to="/profile" className={style.rightPadding}>
+											<Link
+												to="/profile"
+												className={style.rightPadding}
+											>
 												My Profile
 											</Link>
 										</li>
 										<li>
-											<Link onClick={handleShow} className={style.rightPadding}>
+											<Link
+												to="/"
+												onClick={handleShow}
+												className={style.rightPadding}
+											>
 												{" "}
 												SIGN OUT{" "}
 											</Link>{" "}

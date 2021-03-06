@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Container from "react-bootstrap/Container";
 import { firestore } from "../../firebase/firebase.utils";
-import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Table from "react-bootstrap/Table";
-import Alert from "react-bootstrap/Alert";
+import { Table, Card, Col, Alert, ListGroup, Container } from "react-bootstrap";
 import { selectCurrentUser } from "../../redux/user/user-selectors";
 
 const UserProfile = ({ currentUser }) => {
@@ -32,34 +29,34 @@ const UserProfile = ({ currentUser }) => {
 
 	return (
 		<Container>
-			<Card>
-				<Card.Img
-					variant="top"
-					src="https://immedilet-invest.com/wp-content/uploads/2016/01/user-placeholder.jpg"
-					roundedCircle
-					style={{ width: "150px" }}
-				/>
-				<hr />
-				<Card.Body>
-					<p>
-						{" "}
-						Display Name:{" "}
-						<Card.Title>{currentUser.displayName}</Card.Title>
-					</p>
-					<Card.Text>
-						Email:
-						<br /> {currentUser.email}
-					</Card.Text>
-				</Card.Body>
-				{currentUser.isAdmin ? (
-					<Card.Footer>
-						<small className="text-muted">
-							You are an admin. Go to{" "}
-							<Link to="/admin"> Admin Page </Link>
-						</small>
-					</Card.Footer>
-				) : null}
-			</Card>
+			<Col md={{ span: 5, offset: 3 }}>
+				<Card border="dark">
+					<ListGroup variant="flush">
+						<ListGroup.Item>
+							<Card.Img
+								variant="top"
+								src="https://immedilet-invest.com/wp-content/uploads/2016/01/user-placeholder.jpg"
+								roundedCircle
+								style={{ width: "150px", marginLeft:"100px" }}
+							/>
+						</ListGroup.Item>
+						<ListGroup.Item>
+							Display Name: <strong>{currentUser.displayName}</strong>
+						</ListGroup.Item>
+						<ListGroup.Item>
+							Email: <strong>{currentUser.email}</strong>
+						</ListGroup.Item>
+						{currentUser.isAdmin ? (
+							<ListGroup.Item>
+								<small className="text-muted">
+									You are an admin. Go to{" "}
+									<Link to="/admin"> Admin Page </Link>
+								</small>
+							</ListGroup.Item>
+						) : null}
+					</ListGroup>
+				</Card>
+			</Col>
 			<br /> <br />
 			<u onClick={toggle} style={{ cursor: "pointer" }}>
 				{" "}

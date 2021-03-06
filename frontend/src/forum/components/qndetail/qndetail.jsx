@@ -26,15 +26,9 @@ class QuestionDetail extends Component {
 
 	componentDidMount = async () => {
 		const { id } = this.props.match.params;
-		console.log("ID", id);
 		this.setState({ id: id });
 		const docRef = await firestore.collection("questions").doc(id);
 		const doc = await docRef.get();
-		// if (!doc.exists) {
-		// 	console.log("No such document!");
-		// } else {
-		// 	console.log("Document data:", doc.data());
-		// }
 		this.setState({ post: doc.data() });
 		this.setState({ comments: doc.data().comments });
 	};
@@ -154,7 +148,7 @@ class QuestionDetail extends Component {
 							<hr />
 							<p> {this.state.comments.length} Answers: </p>
 							{this.state.comments.map((i) => (
-								<Alert variant="primary">{i}</Alert>
+								<Alert key={i} variant="primary">{i}</Alert>
 							))}
 						</div>
 					) : (

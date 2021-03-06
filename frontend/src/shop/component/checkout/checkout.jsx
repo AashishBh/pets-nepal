@@ -18,12 +18,9 @@ const checkout = ({ cartItems, total, count }) => {
 				<Row>
 					<Col md={8}>
 						{cartItems.map((cartItem) => (
-							<ListGroup>
+							<ListGroup key={cartItem.id}>
 								<ListGroup.Item>
-									<Items
-										key={cartItem.id}
-										cartItem={cartItem}
-									/>
+									<Items cartItem={cartItem} />
 								</ListGroup.Item>
 							</ListGroup>
 						))}

@@ -30,8 +30,8 @@ const Lost = ({ currentUser }) => {
 			) : null}
 			{lostData &&
 				lostData.map(({ description, author, ...otherProps }) => (
-					<div style={{ display: "inline-block" }}>
-						<Item key={lostData.id} description={description} authorId={author.id} {...otherProps} />
+					<div key={Math.random(200)} style={{ display: "inline-block" }}>
+						<Item description={description} authorId={author.id} {...otherProps} />
 					</div>
 				))}
 		</div>
