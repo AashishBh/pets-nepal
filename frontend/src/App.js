@@ -155,7 +155,7 @@ class App extends Component {
             exact
             path="/add/blog"
             render={() => (
-              <Suspense fallback=<div>Loading...</div>>
+              <Suspense fallback={<div>Loading...</div>}>
                 <AddBlog />
               </Suspense>
             )}
@@ -165,7 +165,7 @@ class App extends Component {
             exact
             path="/adoption/add"
             render={() => (
-              <Suspense fallback=<div>Loading...</div>>
+              <Suspense fallback={<div>Loading...</div>}>
                 <AddPet />
               </Suspense>
             )}
@@ -177,13 +177,13 @@ class App extends Component {
             exact
             path="/ask/question"
             render={() => (
-              <Suspense fallback=<div>Loading...</div>>
+              <Suspense fallback={<div>Loading...</div>}>
                 <AskQns />
               </Suspense>
             )}
           />
         </Switch>
-        <Suspense fallback=<div>Loading...</div>>
+        <Suspense fallback={<div>Loading...</div>}>
           <Footer />
         </Suspense>
       </div>
