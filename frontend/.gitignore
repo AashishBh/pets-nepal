@@ -10,7 +10,7 @@
 /src/test
 
 # config keys
-/src/firebase/firebase.config.js
+# /src/firebase/firebase.config.js
 
 # production
 /build
